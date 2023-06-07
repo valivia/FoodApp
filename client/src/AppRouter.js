@@ -2,16 +2,16 @@ import React from 'react'
 import { BrowserRouter, Routes, Route} from "react-router-dom"
 
 import HomePage from './pages/HomePage'
-import EventsPage from './pages/EventsPage'
-import ReviewsPage from './pages/ReviewsPage'
+import RecipePage from './pages/RecipePage'
+import FoodDiaryPage from './pages/FoodDiaryPage'
 
 function AppRouter() {
   return (
     <BrowserRouter>
     <Routes>
         <Route path='/home' element={<HomePage />} />
-        <Route path='/events' element={<EventsPage />} />
-        <Route path='/reviews' element={<ReviewsPage />} />
+        <Route path='/recipes' element={<RecipePage />} />
+        <Route path='/fooddiary' element={<FoodDiaryPage />} />
         </Routes>
     </BrowserRouter>
   )
