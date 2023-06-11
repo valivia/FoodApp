@@ -47,6 +47,9 @@ model Ingredient {
   category    String
   category_nl String
 
+  quantity Float
+  unit     String
+
   nutrients IngredientNutrient?
   recipes   RecipeIngredient[]
 }
