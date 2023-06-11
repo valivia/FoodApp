@@ -39,7 +39,7 @@ model Session {
 
 model Ingredient {
   id   String @id @default(cuid())
-  code String @unique
+  code Int    @unique
 
   name    String
   name_nl String
@@ -47,61 +47,63 @@ model Ingredient {
   category    String
   category_nl String
 
-  // Components
-  energy         Int // kcal
-  fat            Int // total
-  protein_plant  Int // g 
-  protein_animal Int // g
-  protein_total  Int // g
-  carbohydrate   Int // available
-  fibre          Int // dietary total
+  nutrients IngredientNutrient?
+  recipes   RecipeIngredient[]
+}
 
-  magnesium      Int // mg
-  iron_total     Int // mg
-  iron_haem      Int // mg
-  iron_non_haem  Int // mg
-  selenium_total Int // µg
-  zinc           Int // mg
-  iodine         Int // µg
+model IngredientNutrient {
+  id String @id @default(cuid())
 
-  // µg
-  vitamin_d_total        Int
-  hydroxycholecalciferol Int // 25-hydroxycholecalciferol (25OHVitD3)
-  cholecalciferol        Int // Cholecalciferol (VitD3)
+  ENERCC Float // Energy (kcal) 
+  FAT    Float // Fat total (g)
+  PROT   Float // Protein total	(g)
+  PROTPL Float // Protein plant	(g)
+  PROTAN Float // Protein animal	(g)
+  CHO    Float // Carbohydrate available (g)
+  FIBT   Float // Fibre dietary total (g)
 
-  //  mg
-  thiamin    Int // (Vit B1)
-  riboflavin Int // (Vit B2)
-  pyridoxin  Int // (Vit B6)
-  cobalamin  Int // (Vit B12)
-  niacin     Int // (Vit B3)
+  FAPUN3   Float // Fatty acids n-3 polyunsaturated cis	g
+  FAPUN6   Float // Fatty acids n-6 polyunsaturated cis	g
+  F18_3CN3 Float // C18:3 n-3 cis (ALA)	g
+  F18_4CN3 Float // C18:4 n-3 cis	g
+  F20_3CN3 Float // C20:3 n-3 cis	g
+  F20_4CN3 Float // C20:4 n-3 cis	g
+  F20_5CN3 Float // C20:5 n-3 cis (EPA)	g
+  F21_5CN3 Float // C21:5 n-3 all-cis	g
+  F22_2CN3 Float // C22:2 n-3 cis	g
+  F22_3CN3 Float // C22:3 n-3 cis	g
+  F22_5CN3 Float // C22:5 n-3 cis (DPA)	g
+  F22_6CN3 Float // C22:6 n-3 cis (DHA)	g
+  F18_2CN6 Float // C18:2 n-6 (linoleic acid)	g
+  F18_3CN6 Float // C18:3 n-6 cis	g
+  F20_2CN6 Float // C20:2 n-6 cis	g
+  F20_3CN6 Float // C20:3 n-6 cis	g
+  F20_4CN6 Float // C20:4 n-6 cis	g
+  F22_2CN6 Float // C22:2 n-6 cis	g
+  F22_4CN6 Float // C22:4 n-6 cis	g
+  F22_5CN6 Float // C22:5 n-6 cis	g
+  F24_2CN6 Float // C24:2 n-6 ciscis	g
 
-  // g
-  fattyAcids_n3 Int //  Fatty acids n-3 polyunsaturated cis
-  fattyAcids_n6 Int //  Fatty acids n-6 polyunsaturated cis
+  MG    Float //	Magnesium	mg
+  FE    Float //	Iron total	mg
+  HAEM  Float //	Iron haem	mg
+  NHAEM Float //	Iron non-haem	mg
+  SE    Float //	Selenium total	µg
+  ZN    Float //	Zinc	mg
+  ID    Float //	Iodine	µg
 
-  c18_3_n3 Int // ALA
-  C18_4_n3 Int
-  C20_3_n3 Int
-  C20_4_n3 Int
-  C20_5_n3 Int //(EPA)
-  C21_5_n3 Int //(HPA)
-  C22_2_n3 Int
-  C22_3_n3 Int
-  C22_5_n3 Int //(DPA)
-  C22_6_n3 Int //(DHA)
+  VITD     Float //	 Vitamin D total	µg
+  CHOCALOH Float //	 25-hydroxycholecalciferol (25OHVitD3)	µg
+  CHOCAL   Float //	 Cholecalciferol (Vit D3)	µg
 
-  C18_2_n6 Int //  linoleic acid
-  C18_3_n6 Int
-  C20_2_n6 Int
-  C20_3_n6 Int
-  C20_4_n6 Int
-  C22_2_n6 Int
-  C22_4_n6 Int
-  C22_5_n6 Int
-  C24_2_n6 Int
+  THIA   Float // Thiamin (Vit B1)	mg
+  RIBF   Float // Riboflavin (Vit B2)	mg
+  VITB6  Float // Pyridoxin (Vit B6)	mg
+  VITB12 Float // Cobalamin (Vit B12)	µg
+  NIA    Float // Niacin (Vit B3)	mg
 
-  recipes RecipeIngredient[]
+  Ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  ingredientId String     @unique
 }
 
 model RecipeIngredient {
