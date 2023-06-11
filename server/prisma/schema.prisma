@@ -1,0 +1,143 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(cuid())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  email String @unique
+  name  String
+
+  token    String?
+  password String
+
+  diary  Diary[]
+  recipe Recipe[]
+
+  // Auth
+  session Session[]
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  sessionToken String   @unique
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Ingredient {
+  id   String @id @default(cuid())
+  code String @unique
+
+  name    String
+  name_nl String
+
+  category    String
+  category_nl String
+
+  // Components
+  energy         Int // kcal
+  fat            Int // total
+  protein_plant  Int // g 
+  protein_animal Int // g
+  protein_total  Int // g
+  carbohydrate   Int // available
+  fibre          Int // dietary total
+
+  magnesium      Int // mg
+  iron_total     Int // mg
+  iron_haem      Int // mg
+  iron_non_haem  Int // mg
+  selenium_total Int // µg
+  zinc           Int // mg
+  iodine         Int // µg
+
+  // µg
+  vitamin_d_total        Int
+  hydroxycholecalciferol Int // 25-hydroxycholecalciferol (25OHVitD3)
+  cholecalciferol        Int // Cholecalciferol (VitD3)
+
+  //  mg
+  thiamin    Int // (Vit B1)
+  riboflavin Int // (Vit B2)
+  pyridoxin  Int // (Vit B6)
+  cobalamin  Int // (Vit B12)
+  niacin     Int // (Vit B3)
+
+  // g
+  fattyAcids_n3 Int //  Fatty acids n-3 polyunsaturated cis
+  fattyAcids_n6 Int //  Fatty acids n-6 polyunsaturated cis
+
+  c18_3_n3 Int // ALA
+  C18_4_n3 Int
+  C20_3_n3 Int
+  C20_4_n3 Int
+  C20_5_n3 Int //(EPA)
+  C21_5_n3 Int //(HPA)
+  C22_2_n3 Int
+  C22_3_n3 Int
+  C22_5_n3 Int //(DPA)
+  C22_6_n3 Int //(DHA)
+
+  C18_2_n6 Int //  linoleic acid
+  C18_3_n6 Int
+  C20_2_n6 Int
+  C20_3_n6 Int
+  C20_4_n6 Int
+  C22_2_n6 Int
+  C22_4_n6 Int
+  C22_5_n6 Int
+  C24_2_n6 Int
+
+  recipes RecipeIngredient[]
+}
+
+model RecipeIngredient {
+  id String @id @default(cuid())
+
+  recipeId String
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+
+  ingredientId String
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+
+  amount Float
+  unit   String
+}
+
+model Recipe {
+  id String @id @default(cuid())
+
+  name    String
+  name_nl String
+
+  ingredients RecipeIngredient[]
+  diary       Diary[]
+
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id])
+}
+
+model Diary {
+  id String @id @default(cuid())
+
+  date DateTime @default(now())
+
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  recipeId String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+}
