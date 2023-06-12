@@ -1,0 +1,148 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(cuid())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  email String @unique
+  name  String
+
+  token    String?
+  password String
+
+  diary  Diary[]
+  recipe Recipe[]
+
+  // Auth
+  session Session[]
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  sessionToken String   @unique
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Ingredient {
+  id   String @id @default(cuid())
+  code Int    @unique
+
+  name    String
+  name_nl String
+
+  category    String
+  category_nl String
+
+  quantity Float
+  unit     String
+
+  nutrients IngredientNutrient?
+  recipes   RecipeIngredient[]
+}
+
+model IngredientNutrient {
+  id String @id @default(cuid())
+
+  ENERCC Float // Energy (kcal) 
+  FAT    Float // Fat total (g)
+  PROT   Float // Protein total	(g)
+  PROTPL Float // Protein plant	(g)
+  PROTAN Float // Protein animal	(g)
+  CHO    Float // Carbohydrate available (g)
+  FIBT   Float // Fibre dietary total (g)
+
+  FAPUN3   Float // Fatty acids n-3 polyunsaturated cis	g
+  FAPUN6   Float // Fatty acids n-6 polyunsaturated cis	g
+  F18_3CN3 Float // C18:3 n-3 cis (ALA)	g
+  F18_4CN3 Float // C18:4 n-3 cis	g
+  F20_3CN3 Float // C20:3 n-3 cis	g
+  F20_4CN3 Float // C20:4 n-3 cis	g
+  F20_5CN3 Float // C20:5 n-3 cis (EPA)	g
+  F21_5CN3 Float // C21:5 n-3 all-cis	g
+  F22_2CN3 Float // C22:2 n-3 cis	g
+  F22_3CN3 Float // C22:3 n-3 cis	g
+  F22_5CN3 Float // C22:5 n-3 cis (DPA)	g
+  F22_6CN3 Float // C22:6 n-3 cis (DHA)	g
+  F18_2CN6 Float // C18:2 n-6 (linoleic acid)	g
+  F18_3CN6 Float // C18:3 n-6 cis	g
+  F20_2CN6 Float // C20:2 n-6 cis	g
+  F20_3CN6 Float // C20:3 n-6 cis	g
+  F20_4CN6 Float // C20:4 n-6 cis	g
+  F22_2CN6 Float // C22:2 n-6 cis	g
+  F22_4CN6 Float // C22:4 n-6 cis	g
+  F22_5CN6 Float // C22:5 n-6 cis	g
+  F24_2CN6 Float // C24:2 n-6 ciscis	g
+
+  MG    Float //	Magnesium	mg
+  FE    Float //	Iron total	mg
+  HAEM  Float //	Iron haem	mg
+  NHAEM Float //	Iron non-haem	mg
+  SE    Float //	Selenium total	µg
+  ZN    Float //	Zinc	mg
+  ID    Float //	Iodine	µg
+
+  VITD     Float //	 Vitamin D total	µg
+  CHOCALOH Float //	 25-hydroxycholecalciferol (25OHVitD3)	µg
+  CHOCAL   Float //	 Cholecalciferol (Vit D3)	µg
+
+  THIA   Float // Thiamin (Vit B1)	mg
+  RIBF   Float // Riboflavin (Vit B2)	mg
+  VITB6  Float // Pyridoxin (Vit B6)	mg
+  VITB12 Float // Cobalamin (Vit B12)	µg
+  NIA    Float // Niacin (Vit B3)	mg
+
+  Ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  ingredientId String     @unique
+}
+
+model RecipeIngredient {
+  id String @id @default(cuid())
+
+  recipeId String
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+
+  ingredientId String
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+
+  amount Float
+  unit   String
+}
+
+model Recipe {
+  id String @id @default(cuid())
+
+  name    String
+  name_nl String
+
+  ingredients RecipeIngredient[]
+  diary       Diary[]
+
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id])
+}
+
+model Diary {
+  id String @id @default(cuid())
+
+  date DateTime @default(now())
+
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  recipeId String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+}
