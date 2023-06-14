@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+/* App.css */
+
+/* Position the navbar at the bottom of the page */
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #191B19;
+}
