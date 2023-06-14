@@ -1,41 +1,44 @@
 .App {
   text-align: center;
+  background-color: #292B27;
+  height: 100vh;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html{
+  background-color: #292B27;
+  color: #C8D1C5;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1{
+  font-size: 2rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h2{
+font-size: 1.5rem;  
 }
 
-.App-link {
-  color: #61dafb;
+h3{
+  font-size: 1.2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+p{
+  font-size: 1rem;
 }
+
+#homepageDagelijksDoel{
+display: flex;
+flex-direction: row;
+justify-content: center;
+width: 80%;
+margin: 0 auto;
+}
+
+
+.home{
+  width: 100vw;
+}
+
 
 /* App.css */
 
@@ -47,3 +50,15 @@
   right: 0;
   background-color: #191B19;
 }
+
+svg{
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+#ringenVerschillendeVoedingsw{
+  display: flex;
+  flex-direction: row;
+}
+
+
