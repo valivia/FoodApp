@@ -1,0 +1,65 @@
+.recipes{
+    width: 100vw;
+    height: 100vh;
+
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxes{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+}
+
+.box{
+    width: 85vw;
+    height: 5rem;
+    background-color: var(--secondary);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem;
+}
+
+.boxHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 60%;
+}
+
+.boxHeader h3, p{
+    margin: 1rem;
+}
+
+.boxHeader p{
+    color: var(--accent);
+}
+
+.lineBox{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.line{
+    width: 95%;
+    height: 5%;
+    height: 0.07rem;
+    background-color: var(--text);
+}
+
+.description{
+    height: 35%;
+}
+
+.description p{
+    margin-top: 0.1rem;
+}
