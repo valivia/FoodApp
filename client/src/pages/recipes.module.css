@@ -1,7 +1,7 @@
 .recipes{
     width: 100vw;
     height: 100vh;
-
+    
 }
 
 .header{
@@ -10,40 +10,53 @@
     align-items: center;
 }
 
-.boxes{
+.header h1{
+    font-size: 2.2rem;
+}
+
+.recipesWrapper{
     display: flex;
     justify-content: center;
     align-items: center; 
     flex-direction: column;
+    width: 100vw;
 }
 
-.box{
+.recipe{
     width: 85vw;
-    height: 5rem;
+    height: 6rem;
     background-color: var(--secondary);
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     margin: 0.5rem;
+    justify-content: center;
 }
 
-.boxHeader{
+.recipeHeader{
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     height: 60%;
 }
 
-.boxHeader h3, p{
+.recipeHeader h3, p{
     margin: 1rem;
 }
 
-.boxHeader p{
+.textWrapper p{
     color: var(--accent);
 }
 
-.lineBox{
+.textWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.lineWrapper{
     width: 100%;
     display: flex;
     justify-content: center;
@@ -62,4 +75,8 @@
 
 .description p{
     margin-top: 0.1rem;
+}
+
+.iconWrapper{
+    padding-right: 1rem;
 }
