@@ -16,9 +16,18 @@ function HomePage() {
       </section>
 
       <section className={styles.dials}>
-        <Dial progress={0.5} size={5}></Dial>
-        <Dial progress={0.7} size={5}></Dial>
-        <Dial progress={0.89} size={5}></Dial>
+        <section className={styles.dial}>        
+          <Dial progress={0.5} size={5}></Dial>
+          <p>Protein</p>
+        </section>
+        <section className={styles.dial}>        
+          <Dial progress={0.7} size={5}></Dial>
+          <p>Fiber</p>
+        </section>
+        <section className={styles.dial}>        
+          <Dial progress={0.89} size={5}></Dial>
+          <p>Fat</p>
+        </section>
       </section>
 
     </main>
