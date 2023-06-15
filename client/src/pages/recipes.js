@@ -4,6 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
 function RecipePage() {
+  const recipe = 'Lasagne';
+  const calories = 850;
+  const description = 'nomnomnom';
+
   return (
     <main className={styles.recipes}>
       <section className={styles.header}>
@@ -15,8 +19,8 @@ function RecipePage() {
         <section className={styles.recipe}>
           <section className={styles.recipeHeader}>
             <section className={styles.textWrapper}>
-              <h3>Lasagne</h3>
-              <p>800kcal</p>
+              <h3>{recipe}</h3>
+              <p>{calories} kcal</p>
             </section>
             <section className={styles.iconWrapper}>
               <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
@@ -28,7 +32,7 @@ function RecipePage() {
           </section>
 
           <section className={styles.description}>
-            <p>nomnomnom</p>
+            <p>{description}</p>
           </section>
         </section>
 
