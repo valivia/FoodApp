@@ -2,16 +2,16 @@ import React from 'react'
 import { BrowserRouter, Routes, Route} from "react-router-dom"
 import NavBar from './AppNavbar'
 import HomePage from './pages/HomePage'
-import ReceptenDatabase from './pages/ReceptenDatabase'
-import EetDagboek from './pages/EetDagboek';
+import FoodDiary from './pages/FoodDiary'
+import Recipes from './pages/Recipes'
 
 function AppRouter() {
   return (
     <BrowserRouter>
     <Routes>
-        <Route path='/home' element={<HomePage />} />
-        <Route path='/recepten' element={<ReceptenDatabase />} />
-        <Route path='/dagboek' element={<EetDagboek />} />
+        <Route path='/' element={<HomePage />} />
+        <Route path='/recipes' element={<Recipes />} />
+        <Route path='/fooddiary' element={<FoodDiary />} />
       </Routes>
       <NavBar />
     </BrowserRouter>

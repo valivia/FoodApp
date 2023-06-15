@@ -11,24 +11,24 @@ function NavBar() {
         <BottomNavigation class = "navbar" value={location.pathname}>
         <BottomNavigationAction
           label="Home"
-          value="/home"
+          value="/"
           icon={<HomeOutlinedIcon />}
           component={Link}
-          to="/home"
+          to="/"
         />
         <BottomNavigationAction
-          label="Recepten"
-          value="/recepten"
+          label="Recipes"
+          value="/recipes"
           icon={<MenuBookOutlinedIcon />}
           component={Link}
-          to="/recepten"
+          to="/recipes"
         />
         <BottomNavigationAction
-          label="Dagboek"
-          value="/dagboek"
+          label="FoodDiary"
+          value="/fooddiary"
           icon={<MenuOutlinedIcon />}
           component={Link}
-          to="/dagboek"
+          to="/fooddiary"
         />
       </BottomNavigation>
     )
