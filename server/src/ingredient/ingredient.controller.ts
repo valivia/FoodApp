@@ -12,7 +12,7 @@ export class IngredientController {
 
   @Get(":id")
   async findOne(@Param("id") id: string) {
-    const ingredient = await this.ingredientService.findOne(id);
+    const ingredient = await this.ingredientService.findById(id);
     if (!ingredient) {
       throw new NotFoundException("Ingredient not found");
     }

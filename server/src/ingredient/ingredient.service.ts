@@ -9,7 +9,7 @@ export class IngredientService {
     return this.prisma.ingredient.findMany();
   }
 
-  findOne(id: string) {
+  async findById(id: string) {
     return this.prisma.ingredient.findUnique({
       where: { id },
       include: { nutrients: true, recipes: true }
