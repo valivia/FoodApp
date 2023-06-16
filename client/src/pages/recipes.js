@@ -3,10 +3,6 @@ import styles from './recipes.module.css'
 import { Recipe } from '../components/recipe';
 
 function RecipePage() {
-  const recipe = 'Lasagne';
-  const calories = 850;
-  const description = 'nomnomnom';
-
   return (
     <main className={styles.recipes}>
       <section className={styles.header}>

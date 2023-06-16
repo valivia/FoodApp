@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
-import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+import { FiHome, FiBookOpen, FiMenu } from 'react-icons/fi';
 import styless from "./nav.module.css";
 
 function Navigation() {
@@ -13,21 +11,21 @@ function Navigation() {
       <BottomNavigationAction
         label="Home"
         value="/"
-        icon={<HomeOutlinedIcon />}
+        icon={<FiHome />}
         component={Link}
         to="/"
       />
       <BottomNavigationAction
         label="Recipes"
         value="/recipes"
-        icon={<MenuBookOutlinedIcon />}
+        icon={<FiBookOpen />}
         component={Link}
         to="/recipes"
       />
       <BottomNavigationAction
         label="Diary"
         value="/diary"
-        icon={<MenuOutlinedIcon />}
+        icon={<FiMenu />}
         component={Link}
         to="/diary"
       />
