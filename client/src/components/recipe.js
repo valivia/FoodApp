@@ -1,4 +1,5 @@
 import styles from './recipe.module.css';
+import { CiExport } from 'react-icons/ci';
 
 const Recipe = ({recipeName, calories, description}) => {
     
@@ -10,7 +11,7 @@ const Recipe = ({recipeName, calories, description}) => {
               <p>{calories} kcal</p>
             </section>
             <section className={styles.iconWrapper}>
-              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                <CiExport/>
             </section>
           </section>
           

@@ -1,8 +1,6 @@
 import React from 'react'
 import styles from './recipes.module.css'
 import { Recipe } from '../components/recipe';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'  
-import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
 function RecipePage() {
   const recipe = 'Lasagne';
@@ -17,7 +15,7 @@ function RecipePage() {
 
       <section className={styles.recipesWrapper}>
         <Recipe recipeName={'Lasagne'} calories={850} description={'nonnomnom'}></Recipe>
-        <Recipe recipeName={'Pasta Bolognese'} calories={970} description={'Pasta met vegatarische bolognese saus met veel groente'}></Recipe>
+        <Recipe recipeName={'Pasta Bolognese'} calories={970} description={'Pasta met bolognese saus met veel groente'}></Recipe>
 
 
       </section>
