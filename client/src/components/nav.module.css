@@ -9,5 +9,5 @@
 .navbar svg {
     display: block;
     margin: auto;
-    fill: var(--text);
+    stroke: var(--text);
   }
