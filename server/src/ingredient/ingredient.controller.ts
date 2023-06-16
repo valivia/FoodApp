@@ -10,6 +10,12 @@ export class IngredientController {
     return await this.ingredientService.findAll();
   }
 
+  @Get("search/:name")
+  async findByName(@Param("name") name: string) {
+    const ingredients = await this.ingredientService.findByName(name);
+    return ingredients;
+  }
+
   @Get(":id")
   async findOne(@Param("id") id: string) {
     const ingredient = await this.ingredientService.findById(id);

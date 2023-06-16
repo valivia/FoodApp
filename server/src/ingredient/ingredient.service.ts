@@ -9,10 +9,18 @@ export class IngredientService {
     return this.prisma.ingredient.findMany();
   }
 
+  async findByName(name: string) {
+    return this.prisma.ingredient.findMany({
+      where: { name: { mode: "insensitive", startsWith: name } },
+      include: { nutrients: true },
+      take: 10
+    });
+  }
+
   async findById(id: string) {
     return this.prisma.ingredient.findUnique({
       where: { id },
-      include: { nutrients: true, recipes: true }
+      include: { nutrients: true }
     });
   }
 }
