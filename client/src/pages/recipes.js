@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './recipes.module.css'
+import { Recipe } from '../components/recipe';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'  
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,105 +16,9 @@ function RecipePage() {
       </section>
 
       <section className={styles.recipesWrapper}>
+        <Recipe recipeName={'Lasagne'} calories={850} description={'nonnomnom'}></Recipe>
+        <Recipe recipeName={'Pasta Bolognese'} calories={970} description={'Pasta met vegatarische bolognese saus met veel groente'}></Recipe>
 
-        <section className={styles.recipe}>
-          <section className={styles.recipeHeader}>
-            <section className={styles.textWrapper}>
-              <h3>{recipe}</h3>
-              <p>{calories} kcal</p>
-            </section>
-            <section className={styles.iconWrapper}>
-              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-            </section>
-          </section>
-          
-          <section className={styles.lineWrapper}>
-            <div className={styles.line}></div>
-          </section>
-
-          <section className={styles.description}>
-            <p>{description}</p>
-          </section>
-        </section>
-        <section className={styles.recipe}>
-          <section className={styles.recipeHeader}>
-            <section className={styles.textWrapper}>
-              <h3>{recipe}</h3>
-              <p>{calories} kcal</p>
-            </section>
-            <section className={styles.iconWrapper}>
-              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-            </section>
-          </section>
-          
-          <section className={styles.lineWrapper}>
-            <div className={styles.line}></div>
-          </section>
-
-          <section className={styles.description}>
-            <p>{description}</p>
-          </section>
-        </section>
-
-        <section className={styles.recipe}>
-          <section className={styles.recipeHeader}>
-            <section className={styles.textWrapper}>
-              <h3>{recipe}</h3>
-              <p>{calories} kcal</p>
-            </section>
-            <section className={styles.iconWrapper}>
-              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-            </section>
-          </section>
-          
-          <section className={styles.lineWrapper}>
-            <div className={styles.line}></div>
-          </section>
-
-          <section className={styles.description}>
-            <p>{description}</p>
-          </section>
-        </section>
-
-        <section className={styles.recipe}>
-          <section className={styles.recipeHeader}>
-            <section className={styles.textWrapper}>
-              <h3>{recipe}</h3>
-              <p>{calories} kcal</p>
-            </section>
-            <section className={styles.iconWrapper}>
-              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-            </section>
-          </section>
-          
-          <section className={styles.lineWrapper}>
-            <div className={styles.line}></div>
-          </section>
-
-          <section className={styles.description}>
-            <p>{description}</p>
-          </section>
-        </section>
-
-        <section className={styles.recipe}>
-          <section className={styles.recipeHeader}>
-            <section className={styles.textWrapper}>
-              <h3>{recipe}</h3>
-              <p>{calories} kcal</p>
-            </section>
-            <section className={styles.iconWrapper}>
-              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-            </section>
-          </section>
-          
-          <section className={styles.lineWrapper}>
-            <div className={styles.line}></div>
-          </section>
-
-          <section className={styles.description}>
-            <p>{description}</p>
-          </section>
-        </section>
 
       </section>
     </main>

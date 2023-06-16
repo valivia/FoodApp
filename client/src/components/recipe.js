@@ -25,4 +25,4 @@ const Recipe = ({recipeName, calories, description}) => {
     );
 };
 
-export {Recipe}
+export { Recipe };
