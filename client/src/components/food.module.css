@@ -1,0 +1,34 @@
+.foodContainer{
+    width: 100%;
+    height: 3em;
+    border: 1px solid var(--accent);
+    border-radius: 14px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0.5em;
+}
+
+
+.foodContainer h3{
+    margin: 1em;
+    font-size: 1.3rem;
+}
+
+.foodContainer p{
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+
+.protein{
+    color: var(--protein);
+}
+
+.fiber{
+    color: var(--fiber);
+}
+
+.fat{
+    color: var(--fat);
+}
