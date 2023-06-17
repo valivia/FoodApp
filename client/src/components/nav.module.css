@@ -4,6 +4,8 @@
     left: 0;
     right: 0;
     background-color: var(--secondary);
+    display: flex;
+    justify-content: center;
   }
   
 .navbar svg {
@@ -11,3 +13,7 @@
     margin: auto;
     stroke: var(--text);
   }
+
+.action{
+  height: 10vh;
+}
