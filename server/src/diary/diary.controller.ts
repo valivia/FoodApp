@@ -5,12 +5,8 @@ import { UpdateDiaryDto } from "./dto/update-diary.dto";
 
 @Controller("diary")
 export class DiaryController {
-  constructor(private readonly diaryService: DiaryService) {}
+  constructor(private readonly diaryService: DiaryService) { }
 
-  @Post()
-  async create(@Body() createDiaryDto: CreateDiaryDto) {
-    return this.diaryService.create(createDiaryDto);
-  }
 
   @Get()
   async findAll() {
@@ -20,6 +16,11 @@ export class DiaryController {
   @Get(":id")
   async findOne(@Param("id") id: string) {
     return this.diaryService.findOne(+id);
+  }
+
+  @Post()
+  async create(@Body() createDiaryDto: CreateDiaryDto) {
+    return await this.diaryService.create(createDiaryDto);
   }
 
   @Patch(":id")
