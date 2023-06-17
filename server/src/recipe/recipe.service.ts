@@ -3,12 +3,17 @@ import { CreateRecipeDto } from "./dto/create-recipe.dto";
 import { UpdateRecipeDto } from "./dto/update-recipe.dto";
 import { PrismaService } from "src/prisma.service";
 
+
+// TODO: auth
+
 @Injectable()
 export class RecipeService {
   constructor(private prisma: PrismaService) { }
 
   async findAll() {
-    return `This action returns all recipe`;
+    return this.prisma.recipe.findMany({
+      include: { ingredients: true },
+    });
   }
 
   async findByName(name: string) {
@@ -19,19 +24,53 @@ export class RecipeService {
     });
   }
 
-  async findOne(id: number) {
-    return `This action returns a #${id} recipe`;
+  async findOne(id: string) {
+    return this.prisma.recipe.findUnique({
+      where: { id },
+      include: { ingredients: true },
+    });
   }
 
-  async create(createRecipeDto: CreateRecipeDto) {
-    return "This action adds a new recipe";
+  async create(data: CreateRecipeDto) {
+
+    const ingredients = data.ingredients.map((ingredient) => ({
+      quantity: ingredient.quantity,
+      ingredient: { connect: { id: ingredient.id } },
+    }));
+
+    const recipe = this.prisma.recipe.create({
+      include: { ingredients: true },
+      data: {
+        name: data.name,
+        description: data.description,
+        ingredients: { create: ingredients },
+      },
+    });
+
+    return recipe;
   }
 
-  async update(id: number, updateRecipeDto: UpdateRecipeDto) {
-    return `This action updates a #${id} recipe`;
+  async update(id: string, data: UpdateRecipeDto) {
+
+    const ingredients = data.ingredients.map((ingredient) => ({
+      quantity: ingredient.quantity,
+      ingredient: { connect: { id: ingredient.id } },
+    }));
+
+    const recipe = this.prisma.recipe.update({
+      include: { ingredients: true },
+      where: { id },
+      data: {
+        name: data.name,
+        description: data.description,
+        ingredients: { create: ingredients },
+      },
+    });
+
+    return recipe;
   }
 
   async remove(id: string) {
-    return `This action removes a #${id} recipe`;
+    return this.prisma.recipe.delete({ where: { id } });
   }
 }
