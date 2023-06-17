@@ -76,7 +76,7 @@ function processNutrients(entry) {
             if (isNaN(nutrients[key])) {
                 console.warn(`Invalid value for ${key} in ${entry["NEVO-code"]}`);
                 nutrients[key] = null;
-                return;
+                throw new Error("Invalid value");
             }
             continue;
         }
@@ -87,8 +87,10 @@ function processNutrients(entry) {
 
 
         console.warn(`Invalid value for ${key} in ${entry["NEVO-code"]}`);
-        return;
+        throw new Error("Invalid value");
     }
+
+    return nutrients;
 }
 
 async function main() {
