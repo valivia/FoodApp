@@ -1,7 +1,16 @@
-.indicator {
-    border-radius: 100%;
+.main {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 1rem;
+}
+
+.indicator {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(var(--accent) attr(data-progress), #ffffff00 attr(data-progress));
+    mask-image: radial-gradient(closest-side, transparent 79%, white 80% 100%);
 }
