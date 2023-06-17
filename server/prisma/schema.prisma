@@ -130,6 +130,8 @@ model Recipe {
 
   userId String?
   user   User?   @relation(fields: [userId], references: [id])
+
+  @@unique([id, userId])
 }
 
 model Diary {
@@ -142,4 +144,6 @@ model Diary {
 
   user   User   @relation(fields: [userId], references: [id])
   userId String
+
+  @@unique([id, userId])
 }
