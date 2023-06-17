@@ -9,7 +9,6 @@ const Food = ({foodName, protein, fiber, fat}) => {
             <p className={styles.fiber}>{fiber}%</p>
             <p className={styles.fat}>{fat}%</p>
             </section>
-            
         </div>
     )
 }
