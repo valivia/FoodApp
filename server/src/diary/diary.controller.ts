@@ -15,7 +15,7 @@ export class DiaryController {
 
   @Get(":id")
   async findOne(@Param("id") id: string) {
-    return this.diaryService.findOne(+id);
+    return this.diaryService.findOne(id);
   }
 
   @Post()
@@ -25,11 +25,11 @@ export class DiaryController {
 
   @Patch(":id")
   async update(@Param("id") id: string, @Body() updateDiaryDto: UpdateDiaryDto) {
-    return this.diaryService.update(+id, updateDiaryDto);
+    return this.diaryService.update(id, updateDiaryDto);
   }
 
   @Delete(":id")
   async remove(@Param("id") id: string) {
-    return this.diaryService.remove(+id);
+    return this.diaryService.remove(id);
   }
 }
