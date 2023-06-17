@@ -5,7 +5,7 @@ import { UpdateRecipeDto } from "./dto/update-recipe.dto";
 
 @Controller("recipe")
 export class RecipeController {
-  constructor(private readonly recipeService: RecipeService) {}
+  constructor(private readonly recipeService: RecipeService) { }
 
   @Post()
   create(@Body() createRecipeDto: CreateRecipeDto) {
@@ -13,8 +13,13 @@ export class RecipeController {
   }
 
   @Get()
-  findAll() {
-    return this.recipeService.findAll();
+  async findAll() {
+    return await this.recipeService.findAll();
+  }
+
+  @Get("search/:name")
+  findByName(@Param("name") name: string) {
+    return this.recipeService.findByName(name);
   }
 
   @Get(":id")
