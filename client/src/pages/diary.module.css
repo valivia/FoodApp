@@ -1,0 +1,25 @@
+.diary{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+}
+
+.diary h1{
+    font-size: 2.2rem;
+}
+
+
+
+.meals{
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    justify-content: baseline;
+}
+
+.meals h2{
+    font-weight: 400;
+    font-size: 1.4rem;
+}
