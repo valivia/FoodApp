@@ -55,7 +55,8 @@ model Ingredient {
 }
 
 model IngredientNutrient {
-  id String @id @default(cuid())
+  id         String     @unique
+  Ingredient Ingredient @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   ENERCC Float // Energy (kcal) 
   FAT    Float // Fat total (g)
@@ -104,9 +105,6 @@ model IngredientNutrient {
   VITB6  Float // Pyridoxin (Vit B6)	mg
   VITB12 Float // Cobalamin (Vit B12)	µg
   NIA    Float // Niacin (Vit B3)	mg
-
-  Ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
-  ingredientId String     @unique
 }
 
 model RecipeIngredient {
@@ -118,15 +116,14 @@ model RecipeIngredient {
   ingredientId String
   ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
 
-  amount Float
-  unit   String
+  quantity Float
 }
 
 model Recipe {
   id String @id @default(cuid())
 
-  name    String
-  name_nl String
+  name        String
+  description String?
 
   ingredients RecipeIngredient[]
   diary       Diary[]
