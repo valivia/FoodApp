@@ -116,15 +116,14 @@ model RecipeIngredient {
   ingredientId String
   ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
 
-  amount Float
-  unit   String
+  quantity Float
 }
 
 model Recipe {
   id String @id @default(cuid())
 
-  name    String
-  name_nl String
+  name        String
+  description String?
 
   ingredients RecipeIngredient[]
   diary       Diary[]
