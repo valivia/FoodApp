@@ -8,6 +8,7 @@ import DiaryPage from './pages/diary';
 import { Navigation } from './components/nav';
 import RegisterPage from './pages/register';
 import LoginPage from './pages/login';
+import ProfilePage from './pages/profile';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,7 @@ root.render(
         <Route path='/diary' element={<DiaryPage />} />
         <Route path='/register' element={<RegisterPage />}></Route>
         <Route path='/login' element={<LoginPage />}></Route>
+        <Route path='/profile' element={<ProfilePage/>}></Route>
       </Routes>
       <Navigation />
     </BrowserRouter>

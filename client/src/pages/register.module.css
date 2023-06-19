@@ -42,3 +42,8 @@
 .buttonWrapper p{
     font-size: 1.1rem;
 }
+
+input:focus{
+    border-color: var(--accent);
+    outline: none;
+}

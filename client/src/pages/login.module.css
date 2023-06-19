@@ -40,4 +40,7 @@
     font-weight: 500;
 }
 
-
+input:focus{
+    border-color: var(--accent);
+    outline: none;
+}
