@@ -1,25 +1,15 @@
 import React from 'react'
 import { Dial } from '../components/dial.js'
-import styles from './home.module.css'
-import { CgProfile } from 'react-icons/cg';
-import { Navigation } from '../components/nav.js';
+import styles from './home.module.scss'
+import { DailyGoal } from '../components/dailyGoal.jsx';
+import { Wrapper } from '../components/layout/wrapper.jsx';
 
 
 function HomePage() {
   return (
-    <>
-      <main className={styles.home}>
-        <section className={styles.profileIcon}>
-          <CgProfile size={35} />
-        </section>
+      <Wrapper className={styles.main}>
 
-        <section className={styles.dailygoal}>
-          <section>
-            <h1>Daily Goal</h1>
-            <p>2100 Kcal</p>
-          </section>
-          <Dial progress={0.2} size={8} />
-        </section>
+        <DailyGoal progress={0.2} />
 
         <section className={styles.dials}>
           <section className={styles.dial}>
@@ -36,10 +26,7 @@ function HomePage() {
           </section>
         </section>
 
-      </main>
-
-      <Navigation />
-    </>
+      </Wrapper>
   )
 }
 

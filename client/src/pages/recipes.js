@@ -1,26 +1,23 @@
 import React from 'react'
-import styles from './recipes.module.css'
+import styles from './recipes.module.scss'
 import { Recipe } from '../components/recipe';
-import { CgProfile} from 'react-icons/cg';
+import { Wrapper } from '../components/layout/wrapper';
 
 
 function RecipePage() {
   return (
-    <main className={styles.recipes}>
-      <section className={styles.profileIcon}>
-        <CgProfile size={35}/>
-      </section>
+    <Wrapper className={styles.recipes}>
+
       <section className={styles.header}>
         <h1>Recipes</h1>
       </section>
 
-      <section className={styles.recipesWrapper}>
+      <section className={styles.recipes}>
         <Recipe recipeName={'Lasagne'} calories={850} description={'nonnomnom'}></Recipe>
         <Recipe recipeName={'Pasta Bolognese'} calories={970} description={'Pasta met bolognese saus met veel groente'}></Recipe>
-
-
       </section>
-    </main>
+
+    </Wrapper>
   )
 }
 

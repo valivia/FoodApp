@@ -1,0 +1,21 @@
+.main {
+    width: min(var(--docWidth), 100%);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+
+    padding: 1rem;
+    padding-top: 4rem;
+}
+
+.dials {
+    display: flex;
+    justify-content: space-around;
+}
+
+.dial {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
