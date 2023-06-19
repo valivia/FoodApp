@@ -20,6 +20,9 @@ function DiaryPage() {
         <Food foodName={'Chicken'} protein={30} fiber={0} fat={20}></Food>
 
       </section> 
+      <section className={styles.addButtonWrapper}>
+        <button className={styles.addButton}>+</button>
+      </section>
     </section>
   )
 }
