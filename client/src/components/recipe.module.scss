@@ -1,58 +1,44 @@
-.recipe{
-    width: 85vw;
-    height: 6rem;
+.recipe {
     background-color: var(--secondary);
-    border-radius: 12px;
+    border-radius: var(--borderRadius);
     display: flex;
     flex-direction: column;
-    margin: 0.5rem;
     justify-content: center;
+    width: 100%;
+    padding: 0.8rem;
 }
 
-.recipeHeader{
+.recipeHeader {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 60%;
 }
 
-.recipeHeader h3, p{
-    margin: 1rem;
-}
-
-.textWrapper p{
+.textWrapper p {
     color: var(--accent);
 }
 
-.textWrapper{
+.textWrapper {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-
-.lineWrapper{
+.line {
     width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.line{
-    width: 95%;
-    height: 5%;
-    height: 0.07rem;
+    height: 1px;
     background-color: var(--text);
 }
 
-.description{
+.description {
     height: 35%;
 }
 
-.description p{
+.description p {
     margin-top: 0.1rem;
 }
 
-.iconWrapper{
+.iconWrapper {
     padding-right: 1rem;
 }

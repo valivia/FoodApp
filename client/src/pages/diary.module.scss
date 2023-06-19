@@ -1,36 +1,39 @@
-.diary{
+.main {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    width: 100vw;
+    position: relative;
 }
 
-.diary h1{
-    font-size: 2.2rem;
-}
-
-.meals{
+.header {
     display: flex;
-    width: 85%;
+    justify-content: space-between;
+    width: 100%;
+
+    & h1 {
+        font-size: 2.2rem;
+    }
+}
+
+.meals {
+    display: flex;
+    width: 100%;
     flex-direction: column;
     justify-content: baseline;
+    gap: 1rem;
 }
 
-.meals h2{
+.meals h2 {
     font-weight: 400;
     font-size: 1.4rem;
 }
 
-.profileIcon{
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 1em;
-    width: 95%;
-    margin-right: 1.4em;
-  }
+.addButton {
+    display: absolute;
+    bottom: 0;
+    right: 0;
 
-.addButton{
     width: 2em;
     height: 2em;
     border-radius: 100%;
@@ -39,11 +42,10 @@
     font-size: 2rem;
 }
 
-.addButtonWrapper{
+.addButtonWrapper {
     width: 100%;
     display: flex;
     justify-content: flex-end;
     margin-right: 3em;
     margin-top: 5em;
-
 }

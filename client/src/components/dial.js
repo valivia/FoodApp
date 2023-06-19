@@ -1,4 +1,4 @@
-import styles from "./dial.module.css";
+import styles from "./dial.module.scss";
 
 const Dial = ({ progress, size = 12 }) => {
   const percentage = progress * 100;

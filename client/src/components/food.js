@@ -1,4 +1,4 @@
-import styles from '../components/food.module.css'
+import styles from './food.module.scss'
 
 
 const Food = ({foodName, protein, fiber, fat}) => {

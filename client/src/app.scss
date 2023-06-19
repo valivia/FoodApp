@@ -1,0 +1,35 @@
+:root {
+  --text: #c8d1c5;
+  --primary: #292b27;
+  --secondary: #191b19;
+
+  --accent: limegreen;
+  --error: #d17373;
+
+  --protein: #4177e0;
+  --fiber: #cb7550;
+  --fat: #d652b1;
+
+  --navIconSize: 1.4rem;
+  --docWidth: 100ch;
+  --borderRadius: 1rem;
+}
+
+html {
+  background-color: var(--primary);
+  color: var(--text);
+  max-width: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'DM Sans';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
