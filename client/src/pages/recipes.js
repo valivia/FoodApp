@@ -6,7 +6,7 @@ import { Wrapper } from '../components/layout/wrapper';
 
 function RecipePage() {
   return (
-    <Wrapper className={styles.recipes}>
+    <Wrapper className={styles.main}>
 
       <section className={styles.header}>
         <h1>Recipes</h1>
