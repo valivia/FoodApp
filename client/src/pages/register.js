@@ -3,83 +3,84 @@ import styles from './auth.module.scss';
 import { Button } from '../components/interaction/button';
 import { Input } from '../components/interaction/input';
 import { LinkButton } from '../components/interaction/linkButton';
-
+import { useNavigate } from "react-router-dom";
+import { useForm } from 'react-hook-form';
 
 function RegisterPage() {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        password: '',
-        weight: '',
-        height: '',
-    });
+    const [errors, setErrors] = useState([]);
+    const { register, handleSubmit, reset } = useForm();
+    const navigate = useNavigate();
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        const response = fetch(`${process.env.REACT_APP_API_URL}/auth/register`, {
+    const onSubmit = async (data) => {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/register`, {
             method: 'POST',
-            body: JSON.stringify(formData),
+            body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
             }
-        })
-            .then(res => res.json())
-            .catch(err => ({ error: err }));
+        }).catch(err => {
+            console.error(err);
+            return;
+        });
 
-        console.log(response);
+        if (!response) return;
+        if (response.ok) {
+            reset();
+            return navigate('/');
+        }
+
+        const json = await response.json();
+        setErrors([].concat(json.message));
     };
 
     return (
         <main className={styles.main}>
 
             <h2>Register</h2>
-            <form className={styles.form} onSubmit={handleSubmit}>
+            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 
 
                 <Input
                     type='text'
-                    name='name'
-                    value={formData.name}
-                    onChange={handleChange}
+                    {...register("name", { required: true })}
                 />
 
 
                 <Input
                     type='email'
-                    name='email'
-                    value={formData.email}
-                    onChange={handleChange}
+                    {...register("email", { required: true })}
                 />
 
 
                 <Input
 
                     type='password'
-                    name='password'
-                    value={formData.password}
-                    onChange={handleChange}
+                    {...register("password", { required: true })}
                 />
 
                 <Input
                     type='number'
-                    name='weight'
                     placeholder='Weight in kg'
-                    value={formData.weight}
-                    onChange={handleChange}
+                    {...register("weight", { required: true, valueAsNumber: true })}
                 />
 
                 <Input
                     type='number'
-                    name='height'
                     placeholder='Height in cm'
-                    value={formData.height}
-                    onChange={handleChange}
+                    {...register("height", { required: true, valueAsNumber: true })}
                 />
+
+                <Input
+                    type='date'
+                    name='birthday'
+                    {...register("birthday", { required: true, valueAsDate: true })}
+                />
+
+                <ul className={styles.errors}>
+                    {errors.map((error, index) => (
+                        <li key={index}>{error}</li>
+                    ))}
+                </ul>
 
                 <section className={styles.buttonWrapper}>
                     <LinkButton type='submit' variant="secondary" href="/login">Login</LinkButton>

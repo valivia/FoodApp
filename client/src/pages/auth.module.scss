@@ -20,3 +20,9 @@
         flex-grow: 1;
     }
 }
+
+.errors {
+    list-style: none;
+    color: var(--error);
+    font-size: 0.8rem;
+}

@@ -25,7 +25,7 @@
 
 .profileIcon{
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     width: 95%;
     margin-top: 1em;
   }

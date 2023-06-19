@@ -20,6 +20,7 @@ const Input = React.forwardRef((props, ref) => {
                 {...props}
                 label={undefined}
                 className={styles.input}
+                ref={ref}
             />
 
         </section>
