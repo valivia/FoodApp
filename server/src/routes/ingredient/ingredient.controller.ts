@@ -1,7 +1,9 @@
-import { Controller, Get, NotFoundException, Param } from "@nestjs/common";
+import { Controller, Get, NotFoundException, Param, UseGuards } from "@nestjs/common";
 import { IngredientService } from "./ingredient.service";
+import { AuthGuard } from "../auth/auth.guard";
 
 @Controller("ingredient")
+@UseGuards(AuthGuard)
 export class IngredientController {
   constructor(private readonly ingredientService: IngredientService) { }
 
