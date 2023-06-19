@@ -6,6 +6,8 @@ import HomePage from './pages/home';
 import RecipePage from './pages/recipes';
 import DiaryPage from './pages/diary';
 import { Navigation } from './components/nav';
+import RegisterPage from './pages/register';
+import LoginPage from './pages/login';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,6 +17,8 @@ root.render(
         <Route path='/' element={<HomePage />} />
         <Route path='/recipes' element={<RecipePage />} />
         <Route path='/diary' element={<DiaryPage />} />
+        <Route path='/register' element={<RegisterPage />}></Route>
+        <Route path='/login' element={<LoginPage />}></Route>
       </Routes>
       <Navigation />
     </BrowserRouter>
