@@ -3,6 +3,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    height: 90vh;
+    width: 100vw;
 }
 
 .profileForm{
@@ -19,7 +21,29 @@
     border: 0.1em solid var(--text);
     background-color:var(--primary);
     border-radius: 0.75em;
+    color: var(--text);
+    padding: 0.2em;
+    padding-left: 1em;
+    font-size: 0.9rem;
+}
 
+.profileForm img{
+    width: 100px;
+    height: 100px;
+}
+
+.avatar{
+    width: 8em;
+    height: 8em;
+    background-color: var(--accent);
+    border-radius: 100%;
+}
+
+.buttonWrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .profileForm button{
@@ -35,3 +59,4 @@ input:focus{
     border-color: var(--accent);
     outline: none;
 }
+
