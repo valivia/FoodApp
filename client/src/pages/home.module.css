@@ -1,3 +1,10 @@
+.home{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .dailygoal {
     width: 80vw;
     height: 20vh;
@@ -48,3 +55,10 @@
 .dial p{
     margin: 0;
 }
+
+.profileIcon{
+    display: flex;
+    justify-content: end;
+    width: 95%;
+    margin-top: 1em;
+  }

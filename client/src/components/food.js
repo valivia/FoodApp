@@ -1,5 +1,6 @@
 import styles from '../components/food.module.css'
 
+
 const Food = ({foodName, protein, fiber, fat}) => {
     return (
         <div className={styles.foodContainer}>

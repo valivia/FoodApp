@@ -1,10 +1,15 @@
 import React from 'react'
 import styles from './recipes.module.css'
 import { Recipe } from '../components/recipe';
+import { CgProfile} from 'react-icons/cg';
+
 
 function RecipePage() {
   return (
     <main className={styles.recipes}>
+      <section className={styles.profileIcon}>
+        <CgProfile size={35}/>
+      </section>
       <section className={styles.header}>
         <h1>Recipes</h1>
       </section>

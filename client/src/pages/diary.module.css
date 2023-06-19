@@ -21,3 +21,11 @@
     font-weight: 400;
     font-size: 1.4rem;
 }
+
+.profileIcon{
+    display: flex;
+    justify-content: end;
+    margin-top: 1em;
+    width: 95%;
+    margin-right: 1.4em;
+  }

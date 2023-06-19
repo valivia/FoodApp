@@ -1,4 +1,7 @@
 import styles from '../pages/login.module.css';
+import { CgProfile} from 'react-icons/cg';
+
+
 
 function LoginPage () {
     return (

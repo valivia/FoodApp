@@ -1,10 +1,15 @@
 import React from 'react'
 import { Dial } from '../components/dial.js'
 import styles from './home.module.css'
+import { CgProfile} from 'react-icons/cg';
+
 
 function HomePage() {
   return (
     <main className={styles.home}>
+      <section className={styles.profileIcon}>
+        <CgProfile size={35}/>
+      </section>
 
       <section className={styles.dailygoal}>
         <section>
@@ -12,7 +17,6 @@ function HomePage() {
           <p>2100 Kcal</p>
         </section>
         <Dial progress={0.2} size={8} />
-
       </section>
 
       <section className={styles.dials}>

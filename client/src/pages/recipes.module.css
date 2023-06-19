@@ -22,3 +22,10 @@
     width: 100vw;
 }
 
+
+.profileIcon{
+    display: flex;
+    justify-content: end;
+    width: 95%;
+    margin-top: 1em;
+  }
