@@ -12,23 +12,32 @@
     flex-direction: column;
 }
 
+.loginPage h2{
+    font-size: 2rem;
+}
+
+.loginForm label{
+    font-size: 1.3rem;
+}
+
 .loginForm input{
     margin: 1em;
     width: 20rem;
-    height: 1.8rem;
+    height: 3rem;
     border: 0.1em solid var(--text);
     background-color:var(--primary);
     border-radius: 0.75em;
 }
 
 .buttonWrapper button{
-    width: 10em;
-    height: 3.5em;
+    width: 7em;
+    height: 3em;
     border-radius: 6em;
     background-color: var(--accent);
     border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;   
     margin-top: 2em;
+    font-size: 1.3rem;
+    font-weight: 500;
 }
+
+

@@ -11,8 +11,8 @@ function LoginPage () {
                 <input type='password' id='password' name='password' required/>
             </form>
             <section className={styles.buttonWrapper}>
-                <button type='submit'><p>Register</p></button>
-                </section>
+                <button type='submit'>Register</button>
+            </section>
         </section>
     )
 }
