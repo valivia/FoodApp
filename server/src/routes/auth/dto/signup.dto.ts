@@ -1,4 +1,4 @@
-import { IsEmail, IsString, IsStrongPassword } from "class-validator";
+import { IsDateString, IsEmail, IsNumber, IsString, IsStrongPassword, Max, Min } from "class-validator";
 
 export class SignUpDto {
 
@@ -10,4 +10,15 @@ export class SignUpDto {
 
     @IsStrongPassword()
     password: string;
+
+    @IsNumber()
+    weight: number;
+
+    @IsNumber()
+    @Min(20)
+    @Max(300)
+    height: number;
+
+    @IsDateString()
+    birthday: Date;
 }
