@@ -1,6 +1,6 @@
 .diary{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
     width: 100vw;
@@ -20,4 +20,30 @@
 .meals h2{
     font-weight: 400;
     font-size: 1.4rem;
+}
+
+.profileIcon{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1em;
+    width: 95%;
+    margin-right: 1.4em;
+  }
+
+.addButton{
+    width: 2em;
+    height: 2em;
+    border-radius: 100%;
+    background-color: var(--accent);
+    border: none;
+    font-size: 2rem;
+}
+
+.addButtonWrapper{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 3em;
+    margin-top: 5em;
+
 }

@@ -1,12 +1,15 @@
 import React from 'react'
 import styles from './diary.module.css'
 import { Food } from '../components/food'
+import { CgProfile} from 'react-icons/cg';
 
 function DiaryPage() {
   return (
     <section className={styles.diary}>
+      <section className={styles.profileIcon}>
+        <CgProfile size={35}/>
+      </section>
       <h1>Food Diary</h1>
-
       <section className={styles.meals}>
         <h2>Breakfast</h2>
         <Food foodName={'Egg'} protein={7.8} fiber={0} fat={90}></Food>
@@ -17,6 +20,9 @@ function DiaryPage() {
         <Food foodName={'Chicken'} protein={30} fiber={0} fat={20}></Food>
 
       </section> 
+      <section className={styles.addButtonWrapper}>
+        <button className={styles.addButton}>+</button>
+      </section>
     </section>
   )
 }

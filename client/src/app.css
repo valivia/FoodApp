@@ -2,15 +2,27 @@
   --text: #C8D1C5;
   --primary: #292B27;
   --secondary: #191B19;
+  
   --accent: limegreen;
+  --error: #d17373;
+
   --protein: #4177E0;
   --fiber: #CB7550;
   --fat: #D652B1;
+
 }
+
 
 html{
   background-color: var(--primary);
   color: var(--text);
+  max-width: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {

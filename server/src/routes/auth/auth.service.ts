@@ -28,8 +28,11 @@ export class AuthService {
 
         const user = await this.prisma.user.create({
             data: {
-                email: data.email,
                 name: data.name,
+                weight: data.weight,
+                height: data.height,
+                birthday: new Date(data.birthday),
+                email: data.email,
                 password: await bcrypt.hash(data.password, 10),
             },
         });
@@ -49,7 +52,7 @@ export class AuthService {
         });
 
         if (!user || !(await bcrypt.compare(data.password, user.password))) {
-            throw new UnauthorizedException();
+            throw new UnauthorizedException("Invalid credentials");
         }
 
         res.cookie("session",
