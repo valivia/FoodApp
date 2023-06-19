@@ -1,0 +1,22 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.buttonWrapper {
+    display: flex;
+    width: 100%;
+    gap: 1em;
+
+    & button,
+    & a {
+        flex-grow: 1;
+    }
+}

@@ -9,7 +9,7 @@ function Navigation() {
   const location = useLocation();
   return (
     <IconContext.Provider value={{size: '2.3em'}}>
-      <BottomNavigation class={styles.navbar} value={location.pathname}>
+      <BottomNavigation className={styles.navbar} value={location.pathname}>
       <BottomNavigationAction
         value="/"
         icon={<FiHome/>}

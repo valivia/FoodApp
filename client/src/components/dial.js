@@ -5,7 +5,7 @@ const Dial = ({ progress, size = 12 }) => {
 
   return (
     <div
-      class={styles.main}
+      className={styles.main}
       style={{
         width: `${size}rem`,
         height: `${size}rem`,

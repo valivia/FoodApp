@@ -5,7 +5,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import HomePage from './pages/home';
 import RecipePage from './pages/recipes';
 import DiaryPage from './pages/diary';
-import { Navigation } from './components/nav';
 import RegisterPage from './pages/register';
 import LoginPage from './pages/login';
 import ProfilePage from './pages/profile';
@@ -22,7 +21,6 @@ root.render(
         <Route path='/login' element={<LoginPage />}></Route>
         <Route path='/profile' element={<ProfilePage/>}></Route>
       </Routes>
-      <Navigation />
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import styles from '../pages/register.module.css';
+import styles from './auth.module.scss';
+import { Button } from '../components/interaction/button';
+import { Input } from '../components/interaction/input';
+import { LinkButton } from '../components/interaction/linkButton';
 
 
-function RegisterPage () {
+function RegisterPage() {
     const [formData, setFormData] = useState({
-        username: '',
+        name: '',
         email: '',
         password: '',
         weight: '',
@@ -12,61 +15,78 @@ function RegisterPage () {
     });
 
     const handleChange = (e) => {
-        setFormData({...formData, [e.target.name]: e.target.value});
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+
+        const response = fetch(`${process.env.REACT_APP_API_URL}/auth/register`, {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(res => res.json())
+            .catch(err => ({ error: err }));
+
+        console.log(response);
     };
 
     return (
-        <section className={styles.registerPage}>
-            <h2>Register</h2>
-            <form className={styles.registerForm} onSubmit={handleSubmit}>
-                <label>Username:</label>
-                <input
-                type='text'
-                name='username'
-                value={formData.username}
-                onChange={handleChange}/>
-            
-                <label>Email:</label>
-                <input
-                type='email'
-                name='email'
-                value={formData.email}
-                onChange={handleChange}/>
-                
-                <label>Password:</label>
-                <input
-                type='password'
-                name='password'
-                value={formData.password}
-                onChange={handleChange}/>
-                
-                <label>Weight:</label>
-                <input
-                type='number'
-                name='weight'
-                
-                value={formData.weight}
-                onChange={handleChange}/>
-               
+        <main className={styles.main}>
 
-                <label>Height:</label>
-                <input
-                type='number'
-                name='height'
-                value={formData.height}
-                onChange={handleChange}/>
-                
-                <br/>
+            <h2>Register</h2>
+            <form className={styles.form} onSubmit={handleSubmit}>
+
+
+                <Input
+                    type='text'
+                    name='name'
+                    value={formData.name}
+                    onChange={handleChange}
+                />
+
+
+                <Input
+                    type='email'
+                    name='email'
+                    value={formData.email}
+                    onChange={handleChange}
+                />
+
+
+                <Input
+
+                    type='password'
+                    name='password'
+                    value={formData.password}
+                    onChange={handleChange}
+                />
+
+                <Input
+                    type='number'
+                    name='weight'
+                    placeholder='Weight in kg'
+                    value={formData.weight}
+                    onChange={handleChange}
+                />
+
+                <Input
+                    type='number'
+                    name='height'
+                    placeholder='Height in cm'
+                    value={formData.height}
+                    onChange={handleChange}
+                />
+
                 <section className={styles.buttonWrapper}>
-                <button type='submit'><p>Register</p></button>
+                    <LinkButton type='submit' variant="secondary" href="/login">Login</LinkButton>
+                    <Button type='submit' variant="primary">Submit</Button>
                 </section>
             </form>
-        </section>
+        </main>
     )
 }
 

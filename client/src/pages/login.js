@@ -1,22 +1,55 @@
-import styles from '../pages/login.module.css';
-import { CgProfile} from 'react-icons/cg';
+import styles from './auth.module.scss';
+import { Input } from '../components/interaction/input';
+import { Button } from '../components/interaction/button';
+import { LinkButton } from '../components/interaction/linkButton';
+import { useState } from 'react';
 
+function LoginPage() {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+    });
 
+    const onSubmit = (e) => {
+        e.preventDefault();
 
-function LoginPage () {
+        const response = fetch(`${process.env.REACT_APP_API_URL}/auth/login`, {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(res => res.json())
+            .catch(err => ({ error: err }));
+
+        console.log(response);
+    };
+
     return (
-        <section className={styles.loginPage}>
+        <main className={styles.main}>
             <h2>Log In</h2>
-            <form className={styles.loginForm}>
-                <label for="username">Username:</label>
-                <input type='text' id='username' name='username' required/>
-                <label for="password">Password:</label>
-                <input type='password' id='password' name='password' required/>
+            <form className={styles.form} onSubmit={onSubmit} >
+                <Input
+                    type='text'
+                    name='email'
+                    placeholder='E.g John@gmail.com'
+                    onChange={e => setFormData({ ...formData, [e.target.name]: e.target.value })}
+                />
+
+                <Input
+                    type='password'
+                    name='password'
+                    placeholder='Password'
+                    onChange={e => setFormData({ ...formData, [e.target.name]: e.target.value })}
+                />
+
+                <section className={styles.buttonWrapper}>
+                    <LinkButton type='submit' variant="secondary" href="/register">Register</LinkButton>
+                    <Button type='submit' variant="primary">Submit</Button>
+                </section>
             </form>
-            <section className={styles.buttonWrapper}>
-                <button type='submit'>Register</button>
-            </section>
-        </section>
+        </main>
     )
 }
 
