@@ -1,0 +1,44 @@
+.registerPage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    flex-direction: column;
+}
+
+.registerForm{
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+}
+
+.registerForm input{
+    margin: 1em;
+    width: 20rem;
+    height: 1.8rem;
+    border: 0.1em solid var(--text);
+    background-color:var(--primary);
+    border-radius: 0.75em;
+}
+
+.registerForm button{
+    width: 10em;
+    height: 3.5em;
+    border-radius: 6em;
+    background-color: var(--accent);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+
+
+.buttonWrapper{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.buttonWrapper p{
+    font-size: 1.1rem;
+}

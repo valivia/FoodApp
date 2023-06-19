@@ -20,55 +20,50 @@ function RegisterPage () {
     };
 
     return (
-        <section className={styles.registerpage}>
+        <section className={styles.registerPage}>
             <h2>Register</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Username:
-                    <input
-                    type='text'
-                    name='username'
-                    value={formData.username}
-                    onChange={handleChange}/>
-                </label>
+            <form className={styles.registerForm} onSubmit={handleSubmit}>
+                <label>Username:</label>
+                <input
+                type='text'
+                name='username'
+                value={formData.username}
+                onChange={handleChange}/>
+            
+                <label>Email:</label>
+                <input
+                type='email'
+                name='email'
+                value={formData.email}
+                onChange={handleChange}/>
+                
+                <label>Password:</label>
+                <input
+                type='password'
+                name='password'
+                value={formData.password}
+                onChange={handleChange}/>
+                
+                <label>Weight:</label>
+                <input
+                type='number'
+                name='weight'
+                
+                value={formData.weight}
+                onChange={handleChange}/>
+               
 
-                <label>
-                    Email:
-                    <input
-                    type='email'
-                    name='email'
-                    value={formData.email}
-                    onChange={handleChange}/>
-                </label>
-
-                <label>
-                    Password:
-                    <input
-                    type='text'
-                    name='password'
-                    value={formData.password}
-                    onChange={handleChange}/>
-                </label>
-
-                <label>
-                    Weight:
-                    <input
-                    type='text'
-                    name='weight'
-                    value={formData.weight}
-                    onChange={handleChange}/>
-                </label>
-
-                <label>
-                    Height:
-                    <input
-                    type='text'
-                    name='height'
-                    value={formData.height}
-                    onChange={handleChange}/>
-                </label>
+                <label>Height:</label>
+                <input
+                type='number'
+                name='height'
+                value={formData.height}
+                onChange={handleChange}/>
+                
                 <br/>
-                <button type='submit'>Register</button>
+                <section className={styles.buttonWrapper}>
+                <button type='submit'><p>Register</p></button>
+                </section>
             </form>
         </section>
     )
