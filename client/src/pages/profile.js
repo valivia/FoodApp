@@ -3,18 +3,15 @@ import { Wrapper } from '../components/layout/wrapper';
 import styles from './profile.module.scss';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/interaction/button';
-import useSWR from 'swr'
-import { fetcher } from '../util/fetcher';
 import { fetchMutate } from '../util/fetch';
+import { useUser } from '../util/useUser';
 
 function ProfilePage() {
-  const { data: user, error, isLoading, mutate } = useSWR(`${process.env.REACT_APP_API_URL}/user`, fetcher);
+  const { user, mutate } = useUser();
 
   const [errors, setErrors] = useState([]);
   const { register, handleSubmit, reset, watch } = useForm();
-  const navigate = useNavigate();
 
   useEffect(() => {
     reset({ ...user });
@@ -44,8 +41,14 @@ function ProfilePage() {
 
         <Input
           type='text'
-          {...register("name", { required: true })}
-          required
+          label='First Name'
+          {...register("firstName", { required: true })}
+        />
+
+        <Input
+          type='text'
+          label='Last Name'
+          {...register("lastName", { required: true })}
         />
 
         <Input
@@ -62,7 +65,7 @@ function ProfilePage() {
           step='0.01'
           {...register("height", { required: true, valueAsNumber: true })}
         />
-        
+
         <Input
           type='number'
           placeholder='Weight in kg'

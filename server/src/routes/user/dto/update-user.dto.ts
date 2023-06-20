@@ -1,8 +1,11 @@
-import { IsString, IsEmail, IsNumber, Min, Max } from "class-validator";
+import { IsString, IsEmail, IsNumber, Min, Max, IsDateString } from "class-validator";
 
 export class UpdateUserDto {
     @IsString()
-    name: string;
+    firstName: string;
+
+    @IsString()
+    lastName: string;
 
     @IsEmail()
     email: string;
@@ -16,4 +19,7 @@ export class UpdateUserDto {
     @Min(20)
     @Max(300)
     height: number;
+
+    @IsDateString()
+    birthday: Date;
 }

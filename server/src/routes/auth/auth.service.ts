@@ -18,7 +18,12 @@ export class AuthService {
     ) { }
 
     private generatePayload(user: User) {
-        return this.jwtService.sign({ email: user.email, name: user.name, sub: user.id });
+        return this.jwtService.sign({
+            sub: user.id,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+        });
     }
 
     async register(res: Response, data: SignUpDto): Promise<any> {
@@ -29,11 +34,7 @@ export class AuthService {
 
         const user = await this.prisma.user.create({
             data: {
-                name: data.name,
-                weight: data.weight,
-                height: data.height,
-                birthday: new Date(data.birthday),
-                email: data.email,
+                ...data,
                 password: await bcrypt.hash(data.password, 10),
             },
         });

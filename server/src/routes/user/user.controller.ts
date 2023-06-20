@@ -1,4 +1,4 @@
-import { Controller, Get, Body, Put, Param, Delete, UseGuards, Req, UnauthorizedException } from "@nestjs/common";
+import { Controller, Get, Body, Put, Delete, UseGuards, Req, UnauthorizedException, NotFoundException } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { AuthGuard, RequestWithUser } from "../auth/auth.guard";
@@ -11,17 +11,23 @@ export class UserController {
   @Get()
   async findOwn(@Req() req: RequestWithUser) {
     if (!req.user?.sub)
-      return new UnauthorizedException("Invalid credentials");
-    return this.userService.findOne(req.user?.sub);
+      throw new UnauthorizedException("Invalid credentials");
+
+    const user = await this.userService.findOne(req.user?.sub);
+
+    if (!user)
+      throw new NotFoundException("User doesnt exist");
+
+    return user;
   }
 
   @Put()
   async update(@Req() req: RequestWithUser, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(req.user.sub, updateUserDto);
+    return await this.userService.update(req.user.sub, updateUserDto);
   }
 
-  @Delete(":id")
-  async remove(@Param("id") id: string) {
-    return this.userService.remove(+id);
+  @Delete()
+  async remove(@Req() req: RequestWithUser) {
+    return await this.userService.remove(req.user.sub);
   }
 }

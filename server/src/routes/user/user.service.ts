@@ -1,7 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { PrismaService } from "src/prisma.service";
-import { userSelector } from "src/db/userSelector";
 
 @Injectable()
 export class UserService {
@@ -13,7 +12,8 @@ export class UserService {
       select: {
         id: true,
         email: true,
-        name: true,
+        firstName: true,
+        lastName: true,
         createdAt: true,
         updatedAt: true,
         birthday: true,
@@ -30,7 +30,9 @@ export class UserService {
     });
   }
 
-  async remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: string) {
+    return this.prisma.user.delete({
+      where: { id },
+    });
   }
 }

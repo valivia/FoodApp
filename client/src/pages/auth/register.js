@@ -42,9 +42,15 @@ function RegisterPage() {
 
                 <Input
                     type='text'
-                    {...register("name", { required: true })}
+                    label='First Name'
+                    {...register("firstName", { required: true })}
                 />
 
+                <Input
+                    type='text'
+                    label='Last Name'
+                    {...register("lastName", { required: true })}
+                />
 
                 <Input
                     type='email'
