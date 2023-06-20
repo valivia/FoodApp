@@ -8,7 +8,7 @@ const DailyGoal = ({ progress }) => {
         <section className={styles.main}>
             <section className={styles.info}>
                 <h1 className={styles.title}>Daily Goal</h1>
-                <p>2100 Kcal</p>
+                <p>Kcal</p>
             </section>
             <Dial progress={progress} size={8} />
         </section>

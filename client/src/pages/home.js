@@ -4,28 +4,66 @@ import styles from './home.module.scss'
 import { DailyGoal } from '../components/dailyGoal.jsx';
 import { Wrapper } from '../components/layout/wrapper.jsx';
 import { useDiary } from '../util/useDiary';
+import { useMemo } from 'react';
+import { combineNutrients } from '../util/recipe';
+import { useUser } from '../util/useUser';
 
 
 function HomePage() {
-  const { diary, isLoading, error } = useDiary()
+  const { diary, error: diaryError } = useDiary()
+  const { user, error: userError } = useUser();
 
+  const calculate = (input) => {
+    if (!input || input.length === 0) return {
+      energy: 1,
+      protein: 1,
+      fat: 1,
+      fiber: 1,
+    };
+
+    const total = input.reduce((acc, curr) => {
+      const nutrients = combineNutrients(curr.recipe.ingredients);
+
+      for (const nutrient of Object.keys(nutrients)) {
+        if (acc[nutrient]) {
+          acc[nutrient] += nutrients[nutrient];
+        } else {
+          acc[nutrient] = nutrients[nutrient];
+        }
+      }
+      return acc;
+    }, {});
+
+
+    return {
+      energy: total.ENERCC / 2000,
+      protein: total.PROT / 50,
+      fat: total.FAT / 70,
+      fiber: total.FIBT / 25,
+    };
+  };
+
+  const progress = useMemo(() => calculate(diary), [diary, user]);
+
+
+  if (diaryError || userError) return <p>Something went wrong</p>
 
   return (
     <Wrapper className={styles.main}>
 
-      <DailyGoal progress={0.2} />
+      <DailyGoal progress={progress.energy} />
 
       <section className={styles.dials}>
         <section className={styles.dial}>
-          <Dial progress={0.5} size={5}></Dial>
+          <Dial progress={progress.protein} size={5}></Dial>
           <p>Protein</p>
         </section>
         <section className={styles.dial}>
-          <Dial progress={0.7} size={5}></Dial>
+          <Dial progress={progress.fiber} size={5}></Dial>
           <p>Fiber</p>
         </section>
         <section className={styles.dial}>
-          <Dial progress={0.89} size={5}></Dial>
+          <Dial progress={progress.fat} size={5}></Dial>
           <p>Fat</p>
         </section>
       </section>
