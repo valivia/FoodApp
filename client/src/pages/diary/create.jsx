@@ -55,20 +55,12 @@ function CreateDiary() {
 
     return (
         <Wrapper className={styles.main}>
-            <h2>{watch("name")}</h2>
+            <h2>Add to diary</h2>
             <form className={styles.form} onSubmit={handleSubmit(onSubmit)} >
                 <Input
                     type='number'
                     placeholder="Meal size in grams"
                     {...register("quantity", { valueAsNumber: true, shouldUnregister: true })}
-                />
-
-                <Input
-                    type='search'
-                    label="Search for a recipe"
-                    placeholder='E.g Lasagne'
-                    onChange={(e) => setSearch(e.target.value)}
-                    value={search}
                 />
 
                 {/* Active recipe */}
@@ -79,6 +71,16 @@ function CreateDiary() {
                         : <p>No recipe selected</p>
                     }
                 </section>
+
+                <hr />
+
+                <Input
+                    type='search'
+                    label="Search for a recipe"
+                    placeholder='E.g Lasagne'
+                    onChange={(e) => setSearch(e.target.value)}
+                    value={search}
+                />
 
                 {/* Search results */}
                 <section className={styles.results}>
@@ -97,7 +99,7 @@ function CreateDiary() {
                 </ul>
 
                 <section className={styles.buttons}>
-                    <Button type='submit' variant="primary">Create</Button>
+                    <Button type='submit' variant="primary">Add</Button>
                 </section>
             </form>
         </Wrapper>

@@ -1,28 +1,28 @@
-.recipe {
+.main {
     background-color: var(--secondary);
     border-radius: var(--borderRadius);
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    padding: 0.8rem;
+    padding: 1rem;
+    gap: 0.5rem;
 }
 
-.recipeHeader {
+.header {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-}
+    align-items: flex-end;
 
-.textWrapper p {
-    color: var(--accent);
-}
+    & h3 {
+        font-weight: 300;
+        font-size: 1.5rem;
+    }
 
-.textWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    & p {
+        font-size: 0.8rem;
+        opacity: 0.6;
+    }
 }
 
 .line {
@@ -32,13 +32,19 @@
 }
 
 .description {
-    height: 35%;
 }
 
-.description p {
-    margin-top: 0.1rem;
-}
+.nutrients {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 1rem;
+    border-top: 1px solid var(--text);
 
-.iconWrapper {
-    padding-right: 1rem;
+    & > div {
+        & p:nth-child(2) {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+    }
 }

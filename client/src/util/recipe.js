@@ -7,7 +7,7 @@ export function combineNutrients(recipeIngredients) {
         }
 
         const converteQuantity = (quantity, value) => {
-            return quantity * (value / 100);
+            return +(quantity * (value / 100)).toFixed(2);
         };
 
         acc.grams += recipeIngredient.quantity;
