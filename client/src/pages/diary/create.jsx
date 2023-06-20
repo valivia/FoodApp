@@ -88,7 +88,7 @@ function CreateDiary() {
                     {error && <p>{error.message}</p>}
                     {items.length === 0 && <p>No results</p>}
                     {items.map((item, index) => (
-                        <Recipe key={index} {...item} onClick={() => selectRecipe(item)} />
+                        <Recipe key={index} {...item} displayIngredients={false} onClick={() => selectRecipe(item)} />
                     ))}
                 </section>
 

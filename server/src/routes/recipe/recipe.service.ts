@@ -16,7 +16,9 @@ export class RecipeService {
   async findAll(id: string) {
     return this.prisma.recipe.findMany({
       include: this.include,
-      where: { userId: id },
+      where: {
+        OR: [{ userId: id }, { userId: null }],
+      }
     });
   }
 

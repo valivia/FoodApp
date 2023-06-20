@@ -1,9 +1,9 @@
 import React from 'react'
-import styles from './recipes.module.scss'
-import { Recipe } from '../components/recipe';
-import { Wrapper } from '../components/layout/wrapper';
-import { useRecipe } from '../util/useRecipe';
-import { ListHeader } from '../components/layout/listHeader';
+import styles from './index.module.scss'
+import { Recipe } from '../../components/recipe'
+import { Wrapper } from '../../components/layout/wrapper';
+import { useRecipe } from '../../util/useRecipe';
+import { ListHeader } from '../../components/layout/listHeader';
 
 function RecipePage() {
   const { recipes, isLoading, error } = useRecipe()
@@ -11,7 +11,7 @@ function RecipePage() {
   return (
     <Wrapper className={styles.main}>
 
-      <ListHeader title={'Recipes'} />
+      <ListHeader title={'Recipes'} to={"/recipe/new"} />
 
       <section className={styles.recipes}>
         {isLoading && <p>Loading...</p>}

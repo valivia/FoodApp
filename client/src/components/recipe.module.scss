@@ -31,19 +31,47 @@
     background-color: var(--text);
 }
 
-.description {
-}
-
 .nutrients {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    padding: 1rem;
-    border-top: 1px solid var(--text);
+    & ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
 
-    & > div {
+    & li {
+        display: block;
         & p:nth-child(2) {
             font-size: 0.9em;
+            opacity: 0.8;
+        }
+    }
+}
+
+.nutrients,
+.ingredients {
+    & h4 {
+        font-weight: 300;
+        font-size: 1.1rem;
+        border-bottom: 1px solid var(--text);
+        padding-bottom: 0.5rem;
+    }
+}
+
+.ingredients {
+    & ul {
+        padding-left: 2rem;
+    }
+
+    & li {
+        // list-style: none;
+
+        & p {
+            display: inline;
+            font-size: 0.9rem;
+        }
+
+        & p:nth-child(2) {
             opacity: 0.8;
         }
     }

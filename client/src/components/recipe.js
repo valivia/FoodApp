@@ -2,8 +2,9 @@ import { useMemo } from 'react';
 import { combineNutrients } from '../util/recipe';
 import styles from './recipe.module.scss';
 
-const Recipe = ({ name, description, ingredients, onClick }) => {
+const Recipe = ({ name, description, ingredients, onClick, displayIngredients = true, displayNutrients = true }) => {
   const total = useMemo(() => combineNutrients(ingredients), [ingredients]);
+  console.log(ingredients);
 
   return (
     <article className={styles.main} onClick={onClick}>
@@ -17,24 +18,43 @@ const Recipe = ({ name, description, ingredients, onClick }) => {
         {description}
       </p>
 
-      <section className={styles.nutrients}>
-        <div>
-          <p>Calories</p>
-          <p>{total.ENERCC}kcal</p>
-        </div>
-        <div>
-          <p>Protein</p>
-          <p>{total.PROT}g</p>
-        </div>
-        <div>
-          <p>Carbs</p>
-          <p>{total.CHO}g</p>
-        </div>
-        <div>
-          <p>Fat</p>
-          <p>{total.FAT}g</p>
-        </div>
-      </section>
+      {displayNutrients &&
+        <section className={styles.nutrients}>
+          <h4>Nutrients</h4>
+          <ul>
+            <li>
+              <p>Calories</p>
+              <p>{total.ENERCC}kcal</p>
+            </li>
+            <li>
+              <p>Protein</p>
+              <p>{total.PROT}g</p>
+            </li>
+            <li>
+              <p>Carbs</p>
+              <p>{total.CHO}g</p>
+            </li>
+            <li>
+              <p>Fat</p>
+              <p>{total.FAT}g</p>
+            </li>
+          </ul>
+        </section>
+      }
+
+      {displayIngredients &&
+        <section className={styles.ingredients}>
+          <h4>Ingredients</h4>
+          <ul>
+            {ingredients.map((ingredient, i) => (
+              <li key={i}>
+                <p>{ingredient.ingredient.name} </p>
+                <p>({ingredient.quantity}g)</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      }
 
     </article>
   );

@@ -1,5 +1,6 @@
 export function combineNutrients(recipeIngredients) {
-    return recipeIngredients.reduce((acc, recipeIngredient) => {
+    // Combine all nutrients from all ingredients
+    const combined = recipeIngredients.reduce((acc, recipeIngredient) => {
         const { ingredient } = recipeIngredient;
 
         if (!ingredient.nutrients) {
@@ -7,7 +8,7 @@ export function combineNutrients(recipeIngredients) {
         }
 
         const converteQuantity = (quantity, value) => {
-            return +(quantity * (value / 100)).toFixed(2);
+            return quantity * (value / 100);
         };
 
         acc.grams += recipeIngredient.quantity;
@@ -25,4 +26,10 @@ export function combineNutrients(recipeIngredients) {
         return acc;
     }, { grams: 0 });
 
+    // Round to 2 decimal places
+    for (const nutrient of Object.keys(combined)) {
+        combined[nutrient] = Math.round(combined[nutrient] * 100) / 100;
+    }
+
+    return combined;
 }
