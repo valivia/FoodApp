@@ -9,7 +9,13 @@ export class DiaryService {
   constructor(private prisma: PrismaService) { }
 
   private include = {
-    recipe: { include: { ingredients: true } },
+    recipe: {
+      include: {
+        ingredients: {
+          include: { ingredient: { include: { nutrients: true } } }
+        }
+      }
+    },
     user: { select: publicUserSelector },
   };
 

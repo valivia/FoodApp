@@ -1,10 +1,10 @@
+import { useMemo } from 'react';
 import { combineNutrients } from '../util/recipe';
 import styles from './recipe.module.scss';
 import { FiExternalLink } from 'react-icons/fi';
 
 const Recipe = ({ name, description, ingredients }) => {
-  const total = combineNutrients(ingredients);
-  console.log(total);
+  const total = useMemo(() => combineNutrients(ingredients), [ingredients]);
 
   return (
     <section className={styles.recipe}>
