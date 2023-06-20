@@ -7,6 +7,7 @@ import { SignInDto } from "./dto/signin.dto";
 import { User } from "@prisma/client";
 import { Response } from "express";
 import { UserService } from "../user/user.service";
+import { cookieConfig } from "./auth.guard";
 
 @Injectable()
 export class AuthService {
@@ -17,7 +18,12 @@ export class AuthService {
     ) { }
 
     private generatePayload(user: User) {
-        return this.jwtService.sign({ email: user.email, name: user.name, sub: user.id });
+        return this.jwtService.sign({
+            sub: user.id,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+        });
     }
 
     async register(res: Response, data: SignUpDto): Promise<any> {
@@ -28,18 +34,14 @@ export class AuthService {
 
         const user = await this.prisma.user.create({
             data: {
-                name: data.name,
-                weight: data.weight,
-                height: data.height,
-                birthday: new Date(data.birthday),
-                email: data.email,
+                ...data,
                 password: await bcrypt.hash(data.password, 10),
             },
         });
 
         res.cookie("session",
             this.generatePayload(user),
-            { secure: true, signed: true, httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7 }
+            cookieConfig
         );
 
         return;
@@ -57,8 +59,9 @@ export class AuthService {
 
         res.cookie("session",
             this.generatePayload(user),
-            { secure: true, signed: true, httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7 }
+            cookieConfig
         );
+
 
         return;
     }

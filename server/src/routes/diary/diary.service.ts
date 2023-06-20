@@ -2,21 +2,18 @@ import { Injectable } from "@nestjs/common";
 import { CreateDiaryDto } from "./dto/create-diary.dto";
 import { UpdateDiaryDto } from "./dto/update-diary.dto";
 import { PrismaService } from "src/prisma.service";
-import { userSelector } from "src/db/userSelector";
+import { publicUserSelector } from "src/db/userSelector";
 
-// TODO: auth
-
-const user = { id: "clizzq9my0000vd14i8yn1fph" };
 @Injectable()
 export class DiaryService {
   constructor(private prisma: PrismaService) { }
 
   private include = {
     recipe: { include: { ingredients: true } },
-    user: { select: userSelector },
+    user: { select: publicUserSelector },
   };
 
-  async findAll() {
+  async findAll(userId: string) {
     const start = new Date();
     start.setHours(0, 0, 0, 0);
     const end = new Date();
@@ -24,23 +21,23 @@ export class DiaryService {
 
     return this.prisma.diary.findMany({
       include: this.include,
-      where: { userId: user.id, date: { gte: start, lte: end } },
+      where: { userId, date: { gte: start, lte: end } },
     });
   }
 
-  async findOne(id: string) {
+  async findOne(id: string, userId: string) {
     return this.prisma.diary.findUnique({
-      where: { id_userId: { id, userId: user.id } },
+      where: { id_userId: { id, userId } },
       include: this.include,
     });
   }
 
-  async create(data: CreateDiaryDto) {
+  async create(data: CreateDiaryDto, userId: string) {
     const diary = this.prisma.diary.create({
       data: {
         date: new Date(data.date),
         recipe: { connect: { id: data.recipeId } },
-        user: { connect: { id: user.id } },
+        user: { connect: { id: userId } },
       },
       include: this.include,
     });
@@ -48,9 +45,9 @@ export class DiaryService {
     return diary;
   }
 
-  async update(id: string, data: UpdateDiaryDto) {
+  async update(id: string, data: UpdateDiaryDto, userId: string) {
     const diary = this.prisma.diary.update({
-      where: { id_userId: { id, userId: user.id } },
+      where: { id_userId: { id, userId } },
       data: {
         date: new Date(data.date),
         recipe: { connect: { id: data.recipeId } },
@@ -61,9 +58,9 @@ export class DiaryService {
     return diary;
   }
 
-  async remove(id: string) {
+  async remove(id: string, userId: string) {
     return this.prisma.diary.delete({
-      where: { id_userId: { id, userId: user.id } }
+      where: { id_userId: { id, userId } }
     });
   }
 }

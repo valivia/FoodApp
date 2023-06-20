@@ -42,15 +42,20 @@ function RegisterPage() {
 
                 <Input
                     type='text'
-                    {...register("name", { required: true })}
+                    label='First Name'
+                    {...register("firstName", { required: true })}
                 />
 
+                <Input
+                    type='text'
+                    label='Last Name'
+                    {...register("lastName", { required: true })}
+                />
 
                 <Input
                     type='email'
                     {...register("email", { required: true })}
                 />
-
 
                 <Input
 
@@ -60,14 +65,16 @@ function RegisterPage() {
 
                 <Input
                     type='number'
-                    placeholder='Weight in kg'
-                    {...register("weight", { required: true, valueAsNumber: true })}
+                    placeholder='Height in cm'
+                    step='0.01'
+                    {...register("height", { required: true, valueAsNumber: true })}
                 />
 
                 <Input
                     type='number'
-                    placeholder='Height in cm'
-                    {...register("height", { required: true, valueAsNumber: true })}
+                    placeholder='Weight in kg'
+                    step='0.01'
+                    {...register("weight", { required: true, valueAsNumber: true })}
                 />
 
                 <Input
