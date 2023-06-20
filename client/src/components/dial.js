@@ -1,7 +1,7 @@
 import styles from "./dial.module.scss";
 
 const Dial = ({ progress, size = 12 }) => {
-  const percentage = progress * 100;
+  const percentage = (progress * 100).toFixed(1);
 
   return (
     <div
