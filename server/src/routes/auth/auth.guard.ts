@@ -9,17 +9,18 @@ import { JwtService } from "@nestjs/jwt";
 import { IS_PUBLIC_KEY } from "./auth.decorator";
 import { CookieOptions } from "express";
 
-
 export const cookieConfig: CookieOptions = {
     secure: true,
     signed: true,
     httpOnly: true,
     maxAge: 1000 * 60 * 60 * 24 * 7,
-    sameSite: "none",
-    domain: "localhost",
-    path: "/",
 };
 
+if (process.env.NODE_ENV === "development") {
+    cookieConfig.sameSite = "none";
+    cookieConfig.domain = "localhost";
+    cookieConfig.path = "/";
+}
 
 export interface RequestWithUser extends Request {
     user?: any;
@@ -51,7 +52,7 @@ export class AuthGuard implements CanActivate {
         try {
             const payload = await this.jwtService.verifyAsync(
                 token,
-                { secret: "TODO" }
+                { secret: process.env.JWT_SECRET }
             );
 
             request["user"] = payload;

@@ -3,9 +3,6 @@ import { CreateRecipeDto } from "./dto/create-recipe.dto";
 import { UpdateRecipeDto } from "./dto/update-recipe.dto";
 import { PrismaService } from "src/prisma.service";
 
-
-// TODO: auth
-
 @Injectable()
 export class RecipeService {
   constructor(private prisma: PrismaService) { }
