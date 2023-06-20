@@ -2,24 +2,22 @@ import React from 'react'
 import styles from './diary.module.scss'
 import { Food } from '../components/food'
 import { Wrapper } from '../components/layout/wrapper';
+import { useDiary } from '../util/useDiary';
+import { ListHeader } from '../components/layout/listHeader';
 
 function DiaryPage() {
+  const { diary, isLoading, error } = useDiary()
+
   return (
     <Wrapper className={styles.main}>
 
-      <header className={styles.header}>
-        <h1>Food Diary</h1>
-        <button className={styles.addButton}>+</button>
-      </header>
+      <ListHeader title={'Diary'} />
 
       <section className={styles.meals}>
-        <h2>Breakfast</h2>
-        <Food foodName={'Egg'} protein={7.8} fiber={0} fat={90}></Food>
-        <h2>Lunch</h2>
-        <Food foodName={'Yoghurt'} protein={10} fiber={10} fat={4}></Food>
-        <h2>Diner</h2>
-        <Food foodName={'Rice'} protein={4} fiber={20} fat={0}></Food>
-        <Food foodName={'Chicken'} protein={30} fiber={0} fat={20}></Food>
+        {isLoading && <p>Loading...</p>}
+        {error && <p>There was an error loading your diary</p>}
+        {diary && diary.map((recipe, index) => <Food key={index} foodName={'Chicken'} protein={30} fiber={0} fat={20} />)}
+        {diary && diary.length === 0 && <p>No diary entries today</p>}
 
       </section>
     </Wrapper>

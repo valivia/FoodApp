@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { PrismaService } from "src/prisma.service";
+import { privateUserSelector } from "src/db/userSelector";
 
 @Injectable()
 export class UserService {
@@ -9,17 +10,7 @@ export class UserService {
   async findOne(id: string) {
     return this.prisma.user.findUnique({
       where: { id },
-      select: {
-        id: true,
-        email: true,
-        firstName: true,
-        lastName: true,
-        createdAt: true,
-        updatedAt: true,
-        birthday: true,
-        height: true,
-        weight: true,
-      },
+      select: privateUserSelector
     });
   }
 

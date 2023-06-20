@@ -10,9 +10,10 @@ import { PrismaService } from "src/prisma.service";
 export class RecipeService {
   constructor(private prisma: PrismaService) { }
 
-  async findAll() {
+  async findAll(id: string) {
     return this.prisma.recipe.findMany({
       include: { ingredients: true },
+      where: { userId: id },
     });
   }
 

@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from "@nestjs/common";
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req } from "@nestjs/common";
 import { RecipeService } from "./recipe.service";
 import { CreateRecipeDto } from "./dto/create-recipe.dto";
 import { UpdateRecipeDto } from "./dto/update-recipe.dto";
-import { AuthGuard } from "../auth/auth.guard";
+import { AuthGuard, RequestWithUser } from "../auth/auth.guard";
 
 @Controller("recipe")
 @UseGuards(AuthGuard)
@@ -10,8 +10,8 @@ export class RecipeController {
   constructor(private readonly recipeService: RecipeService) { }
 
   @Get()
-  async findAll() {
-    return await this.recipeService.findAll();
+  async findAll(@Req() req: RequestWithUser) {
+    return await this.recipeService.findAll(req.user?.sub);
   }
 
   @Get("search/:name")
