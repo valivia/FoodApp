@@ -11,7 +11,7 @@ import { useUser } from '../util/useUser';
 
 function HomePage() {
   const { diary, error: diaryError } = useDiary()
-  const { user, error: userError } = useUser();
+  const { user } = useUser();
 
   const calculate = (input) => {
     if (!input || input.length === 0) return {
@@ -45,11 +45,9 @@ function HomePage() {
 
   const progress = useMemo(() => calculate(diary), [diary, user]);
 
-
-  if (diaryError || userError) return <p>Something went wrong</p>
-
   return (
     <Wrapper className={styles.main}>
+      {diaryError && <p>Failed to load data</p>}
 
       <DailyGoal progress={progress.energy} />
 
