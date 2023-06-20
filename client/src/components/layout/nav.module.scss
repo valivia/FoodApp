@@ -3,9 +3,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: var(--secondary);
-  display: flex;
-  justify-content: center;
+  background-color: var(--secondary) !important;
 
   z-index: 100;
 }

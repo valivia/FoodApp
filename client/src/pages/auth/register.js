@@ -51,7 +51,6 @@ function RegisterPage() {
                     {...register("email", { required: true })}
                 />
 
-
                 <Input
 
                     type='password'
@@ -60,14 +59,16 @@ function RegisterPage() {
 
                 <Input
                     type='number'
-                    placeholder='Weight in kg'
-                    {...register("weight", { required: true, valueAsNumber: true })}
+                    placeholder='Height in cm'
+                    step='0.01'
+                    {...register("height", { required: true, valueAsNumber: true })}
                 />
 
                 <Input
                     type='number'
-                    placeholder='Height in cm'
-                    {...register("height", { required: true, valueAsNumber: true })}
+                    placeholder='Weight in kg'
+                    step='0.01'
+                    {...register("weight", { required: true, valueAsNumber: true })}
                 />
 
                 <Input

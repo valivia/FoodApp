@@ -2,22 +2,34 @@ import { Input } from '../components/interaction/input';
 import { Wrapper } from '../components/layout/wrapper';
 import styles from './profile.module.scss';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/interaction/button';
+import useSWR from 'swr'
+import { fetcher } from '../util/fetcher';
+import { fetchMutate } from '../util/fetch';
 
 function ProfilePage() {
+  const { data: user, error, isLoading, mutate } = useSWR(`${process.env.REACT_APP_API_URL}/user`, fetcher);
+
   const [errors, setErrors] = useState([]);
   const { register, handleSubmit, reset, watch } = useForm();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    reset({ ...user });
+  }, [user, reset]);
 
-  const firstName = 'Sophia'
-  const lastName = 'van Lieshout'
-  const fullName = firstName + ' ' + lastName
-  const emailAddress = 'sophiavl300@gmail.com'
-  const height = 180;
-  const weight = 63;
+  const onSubmit = async (data) => {
+    const response = await fetchMutate("user", data, "PUT");
+
+    if (!response) return;
+    if (response.ok) {
+      mutate();
+    } else {
+      setErrors([].concat(response.message));
+    }
+  };
 
   return (
     <Wrapper className={styles.main}>
@@ -27,7 +39,7 @@ function ProfilePage() {
       </div>
 
       <h1>{watch("name")}</h1>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <h2>Account</h2>
 
         <Input
@@ -46,14 +58,16 @@ function ProfilePage() {
 
         <Input
           type='number'
-          {...register("height", { required: true })}
-          required
+          placeholder='Height in cm'
+          step='0.01'
+          {...register("height", { required: true, valueAsNumber: true })}
         />
-
+        
         <Input
           type='number'
-          {...register("weight", { required: true })}
-          required
+          placeholder='Weight in kg'
+          step='0.01'
+          {...register("weight", { required: true, valueAsNumber: true })}
         />
 
         <ul className={styles.errors}>

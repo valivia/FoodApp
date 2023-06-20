@@ -13,6 +13,7 @@ function LoginPage() {
 
     const onSubmit = async (data) => {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/login`, {
+            credentials: 'include',
             method: 'POST',
             body: JSON.stringify(data),
             headers: {

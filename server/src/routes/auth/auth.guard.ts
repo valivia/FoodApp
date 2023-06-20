@@ -7,6 +7,23 @@ import {
 import { Reflector } from "@nestjs/core";
 import { JwtService } from "@nestjs/jwt";
 import { IS_PUBLIC_KEY } from "./auth.decorator";
+import { CookieOptions } from "express";
+
+
+export const cookieConfig: CookieOptions = {
+    secure: true,
+    signed: true,
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+    sameSite: "none",
+    domain: "localhost",
+    path: "/",
+};
+
+
+export interface RequestWithUser extends Request {
+    user?: any;
+}
 
 @Injectable()
 export class AuthGuard implements CanActivate {

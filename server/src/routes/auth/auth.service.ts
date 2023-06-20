@@ -7,6 +7,7 @@ import { SignInDto } from "./dto/signin.dto";
 import { User } from "@prisma/client";
 import { Response } from "express";
 import { UserService } from "../user/user.service";
+import { cookieConfig } from "./auth.guard";
 
 @Injectable()
 export class AuthService {
@@ -39,7 +40,7 @@ export class AuthService {
 
         res.cookie("session",
             this.generatePayload(user),
-            { secure: true, signed: true, httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7 }
+            cookieConfig
         );
 
         return;
@@ -57,8 +58,9 @@ export class AuthService {
 
         res.cookie("session",
             this.generatePayload(user),
-            { secure: true, signed: true, httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7 }
+            cookieConfig
         );
+
 
         return;
     }
