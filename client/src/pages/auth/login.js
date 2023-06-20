@@ -5,13 +5,12 @@ import { LinkButton } from '../../components/interaction/linkButton';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
-import { useUser } from '../../util/useUser';
+import { mutate } from 'swr';
 
 function LoginPage() {
     const [errors, setErrors] = useState([]);
     const { register, handleSubmit, reset } = useForm();
     const navigate = useNavigate();
-    const { mutate } = useUser();
 
     const onSubmit = async (data) => {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/login`, {
@@ -29,7 +28,7 @@ function LoginPage() {
         if (!response) return;
         if (response.ok) {
             reset();
-            await mutate();
+            await mutate(`${process.env.REACT_APP_API_URL}/user`);
             return navigate('/');
         }
 

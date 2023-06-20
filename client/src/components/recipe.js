@@ -1,15 +1,18 @@
+import { combineNutrients } from '../util/recipe';
 import styles from './recipe.module.scss';
 import { FiExternalLink } from 'react-icons/fi';
 
-const Recipe = ({ recipeName, calories, description }) => {
+const Recipe = ({ name, description, ingredients }) => {
+  const total = combineNutrients(ingredients);
+  console.log(total);
 
   return (
     <section className={styles.recipe}>
 
       <section className={styles.recipeHeader}>
         <section className={styles.textWrapper}>
-          <h3>{recipeName}</h3>
-          <p>{calories} kcal</p>
+          <h3>{name}</h3>
+          <p>{total.ENERCC} kcal</p>
         </section>
 
         <section className={styles.iconWrapper}>

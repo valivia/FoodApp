@@ -8,8 +8,6 @@ function Wrapper(props) {
   const navigate = useNavigate();
   const { error, isLoading } = useUser();
 
-  console.log({ error, isLoading })
-
   if (isLoading) return <div>Loading...</div>
 
   if (error) return navigate("/login");

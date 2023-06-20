@@ -9,7 +9,11 @@ export class RecipeService {
 
   async findAll(id: string) {
     return this.prisma.recipe.findMany({
-      include: { ingredients: true },
+      include: {
+        ingredients: {
+          include: { ingredient: { include: { nutrients: true } } }
+        }
+      },
       where: { userId: id },
     });
   }

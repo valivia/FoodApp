@@ -20,14 +20,14 @@ function Navigation() {
         />
         <BottomNavigationAction
           value="/recipes"
-          icon={<FiBookOpen />}
+          icon={<FiMenu />}
           component={Link}
           to="/recipes"
           className={styles.action}
         />
         <BottomNavigationAction
           value="/diary"
-          icon={<FiMenu />}
+          icon={<FiBookOpen />}
           component={Link}
           to="/diary"
           className={styles.action}

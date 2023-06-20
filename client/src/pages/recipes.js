@@ -7,7 +7,6 @@ import { ListHeader } from '../components/layout/listHeader';
 
 function RecipePage() {
   const { recipes, isLoading, error } = useRecipe()
-  console.log(recipes)
 
   return (
     <Wrapper className={styles.main}>
