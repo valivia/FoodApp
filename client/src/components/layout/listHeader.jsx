@@ -6,7 +6,7 @@ function ListHeader({ title, to }) {
   return (
     <header className={styles.main}>
       <h1>{title}</h1>
-      <Link className={styles.button} to={to}>+</Link>
+      {to && <Link className={styles.button} to={to}>+</Link>}
     </header>
   )
 }

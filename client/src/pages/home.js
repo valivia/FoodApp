@@ -1,12 +1,14 @@
 import React from 'react'
-import { Dial } from '../components/dial.js'
 import styles from './home.module.scss'
-import { DailyGoal } from '../components/dailyGoal.jsx';
 import { Wrapper } from '../components/layout/wrapper.jsx';
 import { useDiary } from '../util/useDiary';
 import { useMemo } from 'react';
-import { combineNutrients } from '../util/recipe';
+import { calculateGoal, calculateProgress, combineNutrients } from '../util/nutrients.js';
 import { useUser } from '../util/useUser';
+import { ListHeader } from '../components/layout/listHeader.jsx';
+import { Table } from '../components/home/table.jsx';
+import moment from 'moment';
+import { Goals } from '../components/home/goals';
 
 
 function HomePage() {
@@ -14,14 +16,15 @@ function HomePage() {
   const { user } = useUser();
 
   const calculate = (input) => {
-    if (!input || input.length === 0) return {
-      energy: 1,
-      protein: 1,
-      fat: 1,
-      fiber: 1,
-    };
 
-    const total = input.reduce((acc, curr) => {
+    if (!input || input.length === 0)
+      return {
+        progress: {},
+        total: {},
+        goal: {}
+      };
+
+    const nutrients = input.reduce((acc, curr) => {
       const nutrients = combineNutrients(curr.recipe.ingredients);
 
       for (const nutrient of Object.keys(nutrients)) {
@@ -34,37 +37,40 @@ function HomePage() {
       return acc;
     }, {});
 
+    const goal = calculateGoal(nutrients, user);
+    const progress = calculateProgress(nutrients, goal);
 
     return {
-      energy: total.ENERCC / 2000,
-      protein: total.PROT / 50,
-      fat: total.FAT / 70,
-      fiber: total.FIBT / 25,
+      progress,
+      total: nutrients,
+      goal,
     };
   };
 
-  const progress = useMemo(() => calculate(diary), [diary, user]);
+  const { goal, progress, total } = useMemo(() => calculate(diary), [diary, user, calculate]);
+
+  console.log({ goal, progress, total });
+
+  if (!diary) {
+    return (
+      <Wrapper className={styles.main}>
+        <ListHeader title={moment().format("ddd, D MMM")} />
+        <p>Loading...</p>
+      </Wrapper>
+    )
+  }
 
   return (
     <Wrapper className={styles.main}>
+
+      <ListHeader title={moment().format("ddd, D MMM")} />
       {diaryError && <p>Failed to load data</p>}
 
-      <DailyGoal progress={progress.energy} />
+      <h2 className={styles.title}>Today's Goals</h2>
+      <Goals goal={goal} progress={progress} total={total} />
 
-      <section className={styles.dials}>
-        <section className={styles.dial}>
-          <Dial progress={progress.protein} size={5}></Dial>
-          <p>Protein</p>
-        </section>
-        <section className={styles.dial}>
-          <Dial progress={progress.fiber} size={5}></Dial>
-          <p>Fiber</p>
-        </section>
-        <section className={styles.dial}>
-          <Dial progress={progress.fat} size={5}></Dial>
-          <p>Fat</p>
-        </section>
-      </section>
+      <h2 className={styles.title}>Today's Nutrition</h2>
+      <Table goal={goal} total={total} />
 
     </Wrapper>
   )

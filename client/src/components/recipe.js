@@ -1,10 +1,9 @@
 import { useMemo } from 'react';
-import { combineNutrients } from '../util/recipe';
+import { combineNutrients } from '../util/nutrients';
 import styles from './recipe.module.scss';
 
 const Recipe = ({ name, description, ingredients, onClick, displayIngredients = true, displayNutrients = true }) => {
   const total = useMemo(() => combineNutrients(ingredients), [ingredients]);
-  console.log(ingredients);
 
   return (
     <article className={styles.main} onClick={onClick}>
@@ -24,7 +23,7 @@ const Recipe = ({ name, description, ingredients, onClick, displayIngredients = 
           <ul>
             <li>
               <p>Calories</p>
-              <p>{total.ENERCC}kcal</p>
+              <p>{Math.round(total.ENERCC)}kcal</p>
             </li>
             <li>
               <p>Protein</p>

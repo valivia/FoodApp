@@ -1,9 +1,15 @@
 .main {
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: .5rem;
+    margin: 0.5rem;
+}
+
+.total {
+    font-size: 0.6rem;
+    opacity: 0.5;
 }
 
 .indicator {

@@ -11,7 +11,7 @@ function RecipePage() {
   return (
     <Wrapper className={styles.main}>
 
-      <ListHeader title={'Recipes'} to={"/recipe/new"} />
+      <ListHeader title={'Recipes'} />
 
       <section className={styles.recipes}>
         {isLoading && <p>Loading...</p>}

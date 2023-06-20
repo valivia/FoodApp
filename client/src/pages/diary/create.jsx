@@ -11,7 +11,7 @@ import { Recipe } from '../../components/recipe';
 
 function CreateDiary() {
     const [errors, setErrors] = useState([]);
-    const { register, handleSubmit, watch } = useForm();
+    const { register, handleSubmit } = useForm();
 
     const [search, setSearch] = useState('');
     const [items, setItems] = useState([]);

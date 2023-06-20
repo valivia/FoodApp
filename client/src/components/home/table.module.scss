@@ -1,0 +1,27 @@
+.main {
+    background-color: var(--secondary);
+    border-radius: var(--borderRadius);
+    padding: 1rem;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+.table tbody tr {
+    padding: 1em;
+    text-align: center;
+    &:nth-child(even) {
+        background-color: var(--primary);
+    }
+}
+
+.indicator {
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.5em;
+}
