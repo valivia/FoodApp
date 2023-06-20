@@ -9,6 +9,7 @@ import { ListHeader } from '../components/layout/listHeader.jsx';
 import { Table } from '../components/home/table.jsx';
 import moment from 'moment';
 import { Goals } from '../components/home/goals';
+import { defaultNutrients } from '../util/nutrients';
 
 
 function HomePage() {
@@ -19,9 +20,9 @@ function HomePage() {
 
     if (!input || input.length === 0)
       return {
-        progress: {},
-        total: {},
-        goal: {}
+        progress: defaultNutrients,
+        total: defaultNutrients,
+        goal: calculateGoal(defaultNutrients, user)
       };
 
     const nutrients = input.reduce((acc, curr) => {
