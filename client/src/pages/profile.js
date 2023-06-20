@@ -7,6 +7,7 @@ import { Button } from '../components/interaction/button';
 import { fetchMutate } from '../util/fetch';
 import { useUser } from '../util/useUser';
 import { useNavigate } from 'react-router-dom';
+import { FiUser } from 'react-icons/fi';
 
 function ProfilePage() {
   const { user, mutate } = useUser();
@@ -35,7 +36,7 @@ function ProfilePage() {
     <Wrapper className={styles.main}>
 
       <div className={styles.avatar}>
-        <img src='/assets/avatar.jpg' alt='avatar'></img>
+        <FiUser />
       </div>
 
       <h1>{watch("name")}</h1>

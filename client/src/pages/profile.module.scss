@@ -12,11 +12,15 @@
 .avatar {
     width: 8em;
     height: 8em;
+    border-radius: 100%;
+    border: 4px solid var(--text);
 
-    & img {
+    & svg {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        stroke: var(--text);
+        stroke-width: 1px;
         border-radius: 100%;
     }
 }
