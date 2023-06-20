@@ -3,11 +3,11 @@ import { combineNutrients } from '../util/recipe';
 import styles from './recipe.module.scss';
 import { FiExternalLink } from 'react-icons/fi';
 
-const Recipe = ({ name, description, ingredients }) => {
+const Recipe = ({ name, description, ingredients, onClick }) => {
   const total = useMemo(() => combineNutrients(ingredients), [ingredients]);
 
   return (
-    <section className={styles.recipe}>
+    <section className={styles.recipe} onClick={onClick}>
 
       <section className={styles.recipeHeader}>
         <section className={styles.textWrapper}>

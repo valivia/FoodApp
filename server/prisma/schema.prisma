@@ -130,6 +130,7 @@ model Diary {
   id String @id @default(cuid())
 
   date DateTime @default(now())
+  quantity Float?
 
   recipe   Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   recipeId String

@@ -1,0 +1,16 @@
+.main {
+    & h2 {
+        font-weight: 300;
+    }
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.errors {
+    list-style: none;
+    color: var(--error);
+    font-size: 0.8rem;
+}

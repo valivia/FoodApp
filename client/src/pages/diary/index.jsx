@@ -1,9 +1,9 @@
 import React from 'react'
-import styles from './diary.module.scss'
-import { DiaryItem } from '../components/diaryItem'
-import { Wrapper } from '../components/layout/wrapper';
-import { useDiary } from '../util/useDiary';
-import { ListHeader } from '../components/layout/listHeader';
+import styles from './index.module.scss'
+import { DiaryItem } from '../../components/diaryItem'
+import { Wrapper } from '../../components/layout/wrapper';
+import { useDiary } from '../../util/useDiary';
+import { ListHeader } from '../../components/layout/listHeader';
 
 function DiaryPage() {
   const { diary, isLoading, error } = useDiary()
@@ -11,7 +11,7 @@ function DiaryPage() {
   return (
     <Wrapper className={styles.main}>
 
-      <ListHeader title={'Diary'} />
+      <ListHeader title={'Diary'} to={"/diary/new"}/>
 
       <section className={styles.meals}>
         {isLoading && <p>Loading...</p>}

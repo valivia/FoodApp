@@ -12,6 +12,6 @@ export async function fetchMutate(path, data, method = 'POST') {
 
     if (!response) return;
 
-    const result = await response.json();
-    return result;
+    const json = await response.json();
+    return { response, json };
 } 
