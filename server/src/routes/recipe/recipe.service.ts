@@ -7,13 +7,15 @@ import { PrismaService } from "src/prisma.service";
 export class RecipeService {
   constructor(private prisma: PrismaService) { }
 
+  private readonly include = {
+    ingredients: {
+      include: { ingredient: { include: { nutrients: true } } }
+    }
+  };
+
   async findAll(id: string) {
     return this.prisma.recipe.findMany({
-      include: {
-        ingredients: {
-          include: { ingredient: { include: { nutrients: true } } }
-        }
-      },
+      include: this.include,
       where: { userId: id },
     });
   }
@@ -21,7 +23,7 @@ export class RecipeService {
   async findByName(name: string) {
     return this.prisma.recipe.findMany({
       where: { name: { mode: "insensitive", startsWith: name } },
-      include: { ingredients: true },
+      include: this.include,
       take: 10,
     });
   }
@@ -29,7 +31,7 @@ export class RecipeService {
   async findOne(id: string) {
     return this.prisma.recipe.findUnique({
       where: { id },
-      include: { ingredients: true },
+      include: this.include,
     });
   }
 
@@ -41,7 +43,7 @@ export class RecipeService {
     }));
 
     const recipe = this.prisma.recipe.create({
-      include: { ingredients: true },
+      include: this.include,
       data: {
         name: data.name,
         description: data.description,
@@ -60,7 +62,7 @@ export class RecipeService {
     }));
 
     const recipe = this.prisma.recipe.update({
-      include: { ingredients: true },
+      include: this.include,
       where: { id },
       data: {
         name: data.name,

@@ -1,8 +1,10 @@
-import { IsDateString, IsString } from "class-validator";
+import { IsNumber, IsOptional, IsString, Min } from "class-validator";
 
 export class CreateDiaryDto {
-    @IsDateString()
-    date: Date;
+    @IsOptional()
+    @IsNumber()
+    @Min(0)
+    quantity: number;
 
     @IsString()
     recipeId: string;

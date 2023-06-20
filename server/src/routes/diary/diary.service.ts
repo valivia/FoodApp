@@ -41,7 +41,8 @@ export class DiaryService {
   async create(data: CreateDiaryDto, userId: string) {
     const diary = this.prisma.diary.create({
       data: {
-        date: new Date(data.date),
+        date: new Date(),
+        quantity: data.quantity,
         recipe: { connect: { id: data.recipeId } },
         user: { connect: { id: userId } },
       },
@@ -55,7 +56,8 @@ export class DiaryService {
     const diary = this.prisma.diary.update({
       where: { id_userId: { id, userId } },
       data: {
-        date: new Date(data.date),
+        date: new Date(),
+        quantity: data.quantity,
         recipe: { connect: { id: data.recipeId } },
       },
       include: this.include,

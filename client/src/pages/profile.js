@@ -6,9 +6,11 @@ import { useEffect, useState } from 'react';
 import { Button } from '../components/interaction/button';
 import { fetchMutate } from '../util/fetch';
 import { useUser } from '../util/useUser';
+import { useNavigate } from 'react-router-dom';
 
 function ProfilePage() {
   const { user, mutate } = useUser();
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState([]);
   const { register, handleSubmit, reset, watch } = useForm();
@@ -18,13 +20,14 @@ function ProfilePage() {
   }, [user, reset]);
 
   const onSubmit = async (data) => {
-    const response = await fetchMutate("user", data, "PUT");
+    const { response, json } = await fetchMutate("user", data, "PUT");
 
     if (!response) return;
     if (response.ok) {
       mutate();
+      navigate("/");
     } else {
-      setErrors([].concat(response.message));
+      setErrors([].concat(json.message));
     }
   };
 
